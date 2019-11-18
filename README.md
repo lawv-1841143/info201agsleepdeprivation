@@ -9,3 +9,6 @@ The main research question we will be answering is "how does sleep deprivation a
 
 ## Link to project proposal:
 [Project Proposal](projectproposal.md)
+
+## Link to project report: 
+[Project Report](project_report.md)
