@@ -18,17 +18,25 @@ _Autumn 2019_
 
 ## 1.0 Introduction
 ### 1.1 Problem situation
+
 _Requiremtns: Describe the general problem situation, by answering these and similar questions: What is the setting of the problem? Who are the direct and indirect stakeholders (see the Envisioning Cards). What values and tensions are in play for societies and individual people? What are the general issues at stake? What policy and ethical elements bear on the problem? What other work has been done in this area? How are building on this work? Why do you care about this problem and what motivates you to work on it? You employ the Envisioning Cards to address these and similar questions about the social implications and the ethical considerations of your work_
 
 The stakeholders are adults. The setting of the problem is theUnited States. The values are people’s health and well-being. The tensions are tasks, deadlines, and culture affecting how students are sleeping. There are no policies regarding sleep for adults. There are only policies for safe sleep regarding infants. The ethic elements that exist are that deadlines are usually set at reasonable times so adults are not forced to wake up or stay up at an unreasonable time.
 
 ### 1.2 What is the problem?
+
+_Requirement: Given the a description of the problem situation, what is the specific problem? Aim for a clear, concise, and interesting statement of the problem._
+
 The main problem is adults not getting enough sleep every night, and it affects not only work performance but also both physical and mental health (Cunningham, 2019). The National Alliance on Mental Illness states that up to 44 percent of college students have reported themselves experiencing symptoms of depression, and 50 percent have suffered from anxiety, due to sleep deprivation caused by the overwhelming workload at college (“Mental Health Guide,” 2019).
 
 ### 1.3 What does it matter?
+
+_Requirement: Why does the problem matter? Why is it important? Who cares about it?_
+
 The problem of sleep deprivation matters because it influences physical and mental health, as well as their work and their relationships with others. Studies show that sleep deprivation in the long run impacts necessary skills that an adult needs to perform well such as memory recall or concentration, resulting in poor performance when working or doing assignments for school . Moreover, because of sleep deprivation’s impacts on their cognition, these students’ GPA do not correctly illustrate their understanding of the classes, making grading system less reliable to assess students’ understanding and knowledge-applying of the class. In addition, sleep deprivation can also contribute to mental disorders, such as insomnia, depression, and anxiety (Cunningham, 2019).
 
 ### 1.4 How it will be addressed?
+
 _Requirement: In general, how will you address the problem? In general, what kinds of data wrangling and information visualizations will be used? In general, who is the audience for your work?_
 
 Firstly, an ongoing trend of adults’ sleep deprivation will be dressed by using data in Sleep Deprivation. The proportion of samples among the population and the average hours of sleep should be calculated. Then by looking in a dataset about sleeping habits, we will figure out the reason why such pattern showed up and find out as many factors ranking from the most influential to the least. Since the real-world data is so complicated and the existence of feedback loops among factors is nothing to be sneezed at, more meta datasets are needed to address the correlation critically.
@@ -42,7 +50,13 @@ Firstly, an ongoing trend of adults’ sleep deprivation will be dressed by usin
 
 _Requirement: You describe the original data set, answering such questions as: (1) Who created it? (2) Why was it reated?(3) Where did you access it? (4) What represents an “observation”? (5) What “variables” does each observation have? (6) How big is the data set? If it is a sub-set of a larger data set, how was the sub-set created? (7) If the data set represents people, who has been included and who has been excluded? You employ the envisioning cards to clarify the strengths and weaknesses of the data set(s). You describe the strengths and the weaknesses of the data set. Data wrangling. You discuss how you organized and cleaned your data. How did you reshape your data? How are missing values handled? You refer to the appendix: Data Dictionary. _
 
-Name: Sleep Deprivation
+### Name: Life tracking project dataset
+
+Description: Data from tracking daily activities over one month
+
+[link](https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv)
+
+### Name: Sleep Deprivation
 
 Description: This dataset provides a wide variety of attributes for 90 participants. Some attributes include age group, BMI, education level, whether they have had depression, how long the participant’s sleep and types of sleep.
 
