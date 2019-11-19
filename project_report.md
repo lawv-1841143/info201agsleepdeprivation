@@ -99,7 +99,7 @@ _Requirement: You describe how your Shiny application is built. You describe its
 
 ## 6.0 Conclusion
 
-_Requirement: You should summarize: (1) The strengths and weaknesses of the project; (2) Themain lessons that you learned; and (3) The future work that you or someone elsemight pursue. _
+_Requirement: You should summarize: (1) The strengths and weaknesses of the project; (2) Themain lessons that you learned; and (3) The future work that you or someone elsemight pursue._
 
 ## Acknowledgements
 
