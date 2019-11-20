@@ -29,18 +29,14 @@ colnames(polysomnography_studies_df) <- c("year", "age_range", "sleep_time")
 colnames(actigraphic_studies_df) <- c("year", "age_range", "sleep_time")
 
 # reform the dataframe by grouping the sleep time by years
-polysomnography_grouped_df <- polysomnography_studies_df %>%
-  filter(year > 1989) %>% 
-  group_by(year) %>% 
+polysomnography_grouped_df <- group_by(polysomnography_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time))
-actigraphic_grouped_df <- actigraphic_studies_df %>% 
-  filter(year > 1989) %>% 
-  group_by(year) %>% 
+actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>% 
   summarize(sleep_time = mean(sleep_time))
 grouped_df <- rbind(polysomnography_grouped_df, actigraphic_grouped_df)
 
 # create a point plot and a best fit line
-sleep_in_years <- ggplot(data = grouped_df) + 
+ggplot(data = grouped_df) + 
   geom_point(mapping = aes(x = year, y = sleep_time)) +
   geom_smooth(mapping = aes(x = year, y = sleep_time)) +
   ggtitle("US adults sleeping times for the recent decades")
