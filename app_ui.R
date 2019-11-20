@@ -1,41 +1,28 @@
+# install.packages("shinythemes")
+
 library(shiny)
-
-page_one <- tabPanel(
-  "Home",
-  titlePanel("Home")
-)
-
-page_two <- tabPanel(
-  "Current Situation",
-  titlePanel("Current Situation")
-)
-
-page_three <- tabPanel(
-  "Cause",
-  titlePanel("Cause")
-)
-
-page_four <- tabPanel(
-  "Impact",
-  titlePanel("Impact")
-)
-
-page_five <- tabPanel(
-  "Suggestion/ Advice",
-  titlePanel("Suggestion/ Advice")
-)
-
-page_six <- tabPanel(
-  "About",
-  titlePanel("About")
-)
+library(shinythemes)
 
 ui <- navbarPage(
+  theme = shinytheme("superhero"),
   "Sleep Deprivation",
-  page_one,
-  page_two,
-  page_three,
-  page_four,
-  page_five,
-  page_six
+  tabPanel("Background"),
+  tabPanel("Trend", 
+           titlePanel("The current sleeping time trend in U.S. population")),
+  tabPanel("Brutal Reality", 
+           titlePanel("The FACT that we are having less sleep hours...")), 
+  navbarMenu("Causes", 
+             tabPanel("Multiple Factors", 
+                      titlePanel("Why are we staying up so late?")), 
+             tabPanel("Life Tracking Sample", 
+                      titlePanel("Let's see what people in U.S. do during the day"))), 
+  tabPanel("Impact", 
+           titlePanel("Risks taken for shortened sleep")), 
+  tabPanel("Conclusion", 
+           titlePanel("Conclusion")), 
+  navbarMenu("About", 
+             tabPanel("About Tech", 
+                      titlePanel("Give credit to all the amazing sources!")), 
+             tabPanel("About Us", 
+                      titlePanel("More Information on project members!")))
 )
