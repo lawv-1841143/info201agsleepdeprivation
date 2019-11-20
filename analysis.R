@@ -92,6 +92,8 @@ plot_ly(
   )
 
 # a function for bar graph of given sleep time and input time
-#compare_bar <- function(other) {
-
-#}
+compare_bar <- function(other) {
+  
+}quick_test <- life_tracking_df %>% 
+  pull(cook)
+hour_format <- chron(quick_test, na.rm = TRUE)
