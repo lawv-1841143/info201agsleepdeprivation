@@ -23,4 +23,5 @@ orginal_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_rele
                           stringsAsFactors = F)
 us_sleep_deprived <- orginal_df %>% 
   filter(MeasureId == "SLEEP") %>% 
-  select()
+  select(Year, StateAbbr, CityName, Data_Value, PopulationCount, GeoLocation, Short_Question_Text)
+write.csv(us_sleep_deprived, file = "us_sleep_deprived.csv")
