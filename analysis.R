@@ -17,8 +17,8 @@ info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
                           stringsAsFactors = F)
 # this .csv file is too large to be uploaded on to Github
 # will ask Andrey about this
-US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
-                       stringsAsFactors = F)
+# US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
+#                        stringsAsFactors = F)
 colnames(US_df)[1] <- "Year"
 # this is the version after data wrangling for that huge .csv file
 us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F)
@@ -47,10 +47,10 @@ ggplot(data = grouped_df) +
   labs(color = "Studies' Methods: ")
 
 # data wrangling into data columns that needed in the map
-us_sleep_deprived <- US_df %>% 
-  filter(MeasureId == "SLEEP") %>% 
-  select(Year, StateAbbr, CityName, Data_Value, PopulationCount, GeoLocation, Short_Question_Text)
-write.csv(us_sleep_deprived, file = "us_sleep_deprived.csv")
+# us_sleep_deprived <- US_df %>% 
+#   filter(MeasureId == "SLEEP") %>% 
+#   select(Year, StateAbbr, CityName, Data_Value, PopulationCount, GeoLocation, Short_Question_Text)
+# write.csv(us_sleep_deprived, file = "us_sleep_deprived.csv")
 
 # data wrangling with dataset, 
 new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
