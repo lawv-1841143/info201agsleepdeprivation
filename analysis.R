@@ -77,5 +77,3 @@ plot_ly(
     xaxis = list(title = "Answer"),
     yaxis = list(title = "GPA")
   )
-
-?plot_ly
