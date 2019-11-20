@@ -2,6 +2,7 @@
 
 library(shiny)
 library(shinythemes)
+source('analysis.R')
 
 ui <- navbarPage(
   theme = shinytheme("superhero"),
@@ -21,7 +22,11 @@ ui <- navbarPage(
              h2("The current sleeping time trend in U.S. population"), 
              sidebarLayout(
                sidebarPanel(
-                 
+                 checkboxGroupInput("StudiesMethods",
+                                    label = h3("Studies' Methods"), 
+                                    choices = list("Actigraphic Study" = 1,
+                                                   "Polysomnography Study" = 2),
+                                    selected = 1)
                ), 
                mainPanel(
                  plotOutput('us_timeline')
@@ -30,13 +35,15 @@ ui <- navbarPage(
              h2("Geographic map of US adults sleeping <7 hours"), 
              sidebarLayout(
                sidebarPanel(
-                 
+                 sliderInput("YearRange",
+                             label = h3("Range of interest:"),
+                             min = 1991, max = 2019, value = 2000)
                ), 
                mainPanel(
-                 plotOutput('uw_map_7')
+                 plotOutput('us_map_7')
                )
              )
-           ),
+           )),
   tabPanel("Brutal Reality", 
            titlePanel("The FACT that we are having less sleep hours can..."), 
            sidebarLayout(
@@ -52,11 +59,13 @@ ui <- navbarPage(
              tabPanel("Multiple Factors", 
                       titlePanel("Why are we staying up so late?")), 
              tabPanel("Life Tracking Sample", 
-                      titlePanel("Let's see what people in U.S. do during the day"))), 
+                      titlePanel("Let's see what people in U.S. do during the day"))
+             ), 
   tabPanel("Impact", 
            titlePanel("Risks taken for shortened sleep")), 
   tabPanel("Conclusion", 
-           titlePanel("Conclusion")), 
+           titlePanel("Conclusion")
+           ), 
   navbarMenu("About", 
              tabPanel("About Tech", 
                       titlePanel("Give credit to all the amazing sources!")

@@ -3,13 +3,13 @@ source('analysis.R')
 
 server <- function(input, output) {
   output$us_map_7 <- renderPlot(
-    plot_usmap(data = new_df, values = "percent", color = "white", labels = T) +
-      scale_fill_continuous(low = "lightgrey", high = "black", 
-                            name = "Sleep <7 hours(%)",
-                            label = scales::comma) +
-      theme(legend.position = "right") +
-      ggtitle("Among all age group in U.S., 
-Percentage of population getting less than 7 hours sleep")
+    ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels = T, 
+                        label_color = "white") +
+               scale_fill_continuous(low = "lightgrey", high = "black", 
+                                     name = "Sleep <7 hours(%)",
+                                     label = scales::comma) +
+               theme(legend.position = "right"),
+             tooltip = c("value"))
   )
   output$us_timeline <- renderPlot(
     ggplot(data = grouped_df) + 
@@ -20,4 +20,6 @@ Percentage of population getting less than 7 hours sleep")
       scale_y_continuous(name = "Sleep Time (minute)") +
       labs(color = "Studies' Methods: ")
   )
+  output$value <- renderPrint({input$StudiesMethods})
+  output$value <- renderPrint({input$YearRange})
 }
