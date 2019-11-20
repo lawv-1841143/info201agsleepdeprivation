@@ -81,3 +81,8 @@ plot_ly(
     xaxis = list(title = "Answer"),
     yaxis = list(title = "GPA")
   )
+
+# a function for bar graph of given sleep time and input time
+#compare_bar <- function(other) {
+  
+#}
