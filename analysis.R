@@ -25,22 +25,26 @@ us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F
 # read in dataset with US state and the lat and long
 statelatlong <- read.csv("data/statelatlong.csv", stringsAsFactors = F)
 
-# change column names into readable lines
-colnames(polysomnography_studies_df) <- c("year", "age_range", "sleep_time")
-colnames(actigraphic_studies_df) <- c("year", "age_range", "sleep_time")
-
 # reform the dataframe by grouping the sleep time by years
 polysomnography_grouped_df <- group_by(polysomnography_studies_df, year) %>%
-  summarize(sleep_time = mean(sleep_time))
+  summarize(sleep_time = mean(sleep_time)) %>% 
+  mutate(type = "Polysomnography Study")
 actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>% 
-  summarize(sleep_time = mean(sleep_time))
-grouped_df <- rbind(polysomnography_grouped_df, actigraphic_grouped_df)
+  summarize(sleep_time = mean(sleep_time)) %>% 
+  mutate(type = "Actigraphic Study")
+grouped_df <- bind_rows(polysomnography_grouped_df, actigraphic_grouped_df) %>% 
+  arrange(year)
 
-# create a point plot and a best fit line
+
+# create a point plot and a best fit line with color difference to emphasize
+# the data from two different study
 ggplot(data = grouped_df) + 
-  geom_point(mapping = aes(x = year, y = sleep_time)) +
+  geom_point(mapping = aes(x = year, y = sleep_time, color = type)) +
   geom_smooth(mapping = aes(x = year, y = sleep_time)) +
-  ggtitle("US adults sleeping times for the recent decades")
+  ggtitle("US adults sleeping times for the recent decades") +
+  scale_x_continuous(name = "Year") +
+  scale_y_continuous(name = "Sleep Time (minute)") +
+  labs(color = "Studies' Methods: ")
 
 # data wrangling into data columns that needed in the map
 us_sleep_deprived <- US_df %>% 
