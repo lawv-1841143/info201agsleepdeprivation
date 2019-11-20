@@ -28,7 +28,14 @@ ui <- navbarPage(
                )
              ), 
              h2("Geographic map of US adults sleeping <7 hours"), 
-             plotOutput('us_map_7'))
+             sidebarLayout(
+               sidebarPanel(
+                 
+               ), 
+               mainPanel(
+                 plotOutput('uw_map_7')
+               )
+             )
            ),
   tabPanel("Brutal Reality", 
            titlePanel("The FACT that we are having less sleep hours can..."), 

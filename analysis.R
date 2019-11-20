@@ -38,7 +38,7 @@ grouped_df <- bind_rows(polysomnography_grouped_df, actigraphic_grouped_df) %>%
 
 # create a point plot and a best fit line with color difference to emphasize
 # the data from two different study
-ggplot(data = grouped_df) + 
+ggplot(grouped_df) + 
   geom_point(mapping = aes(x = year, y = sleep_time, color = type)) +
   geom_smooth(mapping = aes(x = year, y = sleep_time)) +
   ggtitle("US adults sleeping times for the recent decades") +
@@ -61,17 +61,23 @@ new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
 colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
 # plot the US map with data info
-m <- plot_usmap(data = new_df, regions = "state",
-           values = "percent", color = "white",
-           ggplot2::aes(text = paste('State: ', new_df$state, '<br>',
-                        'Percentage: ', new_df$percent))) +
+# version 1.0 without hover interaction ---- succeed
+plot_usmap(data = new_df, values = "percent", color = "white", labels = T) +
   scale_fill_continuous(low = "lightgrey", high = "black", 
                         name = "Sleep <7 hours(%)",
                         label = scales::comma) +
   theme(legend.position = "right") +
   ggtitle("Among all age group in U.S., 
 Percentage of population getting less than 7 hours sleep")
-ggplotly(m,tooltip = c("text"))
+# version 1.1 with hover interaction --- failed
+m <- plot_usmap(data = new_df, values = "percent",
+                color = 'white') +
+  labs(group = new_df$state, value = new_df$percent) +
+  scale_fill_continuous(low = "white", high = "black", 
+                        name = "Sleep <7 hours(%)",
+                        label = scales::comma) +
+  theme(legend.position = "right")
+ggplotly(m, tooltip = c("value"))
 
 # bar graph of GPA and feeling-tired relationship
 plot_ly(
@@ -84,3 +90,4 @@ plot_ly(
     xaxis = list(title = "Answer"),
     yaxis = list(title = "GPA")
   )
+  

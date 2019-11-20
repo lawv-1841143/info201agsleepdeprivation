@@ -1,9 +1,9 @@
 library(shiny)
+source('analysis.R')
 
 server <- function(input, output) {
   output$us_map_7 <- renderPlot(
-    plot_usmap(data = new_df, regions = "state",
-               values = "percent", color = "white") +
+    plot_usmap(data = new_df, values = "percent", color = "white", labels = T) +
       scale_fill_continuous(low = "lightgrey", high = "black", 
                             name = "Sleep <7 hours(%)",
                             label = scales::comma) +
