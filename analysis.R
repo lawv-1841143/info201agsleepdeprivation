@@ -1,3 +1,4 @@
+library(dplyr)
 # analysis code for dataset and visualization
 
 # create a dataframs for life tracking time
@@ -16,3 +17,10 @@ info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
                           stringsAsFactors = F)
 # category: age group, sex. 
 # can see symptoms of sleep deprivation (anxiety, depression, snoring, ), and nap conditions. 
+
+
+orginal_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
+                          stringsAsFactors = F)
+us_sleep_deprived <- orginal_df %>% 
+  filter(MeasureId == "SLEEP") %>% 
+  select()
