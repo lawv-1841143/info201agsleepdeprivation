@@ -19,6 +19,7 @@ info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
 # will ask Andrey about this
 US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
                        stringsAsFactors = F)
+colnames(US_df)[1] <- "Year"
 # this is the version after data wrangling for that huge .csv file
 us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F)
 # read in dataset with US state and the lat and long
@@ -53,7 +54,7 @@ plot_ly(
     yaxis = list(title = "GPA")
   )
 
-# ??
+# data wrangling into data columns that needed in the map
 us_sleep_deprived <- US_df %>% 
   filter(MeasureId == "SLEEP") %>% 
   select(Year, StateAbbr, CityName, Data_Value, PopulationCount, GeoLocation, Short_Question_Text)
@@ -68,11 +69,11 @@ new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
 colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
 # plot the US map with data info
-plot_usmap(data = new_df, regions = "state",
-           values = "percent", color = "white", labels = T) + 
+plot_usmap(new_df, regions = "state",
+           values = "percent", color = "white") +
   scale_fill_continuous(low = "white", high = "steelblue4", 
                         name = "Sleep <7 hours(%)",
-                        label = scales::comma) + 
+                        label = scales::comma) +
   theme(legend.position = "right") +
   ggtitle("Among all age group in U.S., 
 Percentage of population getting less than 7 hours sleep")
