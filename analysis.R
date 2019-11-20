@@ -80,3 +80,14 @@ plot_usmap(data = new_df, regions = "state",
   theme(legend.position = "right") +
   ggtitle("Among all age group in U.S., 
 Percentage of population getting less than 7 hours sleep")
+
+plot_ly(
+  x = c("Yes", "No"),
+  y = c(3.04, 3.24),
+  type = "bar"
+) %>% 
+  layout(
+    title = "Feeling tired, fatigued, or daytime sleepiness",
+    xaxis = list(title = "Answer"),
+    yaxis = list(title = "GPA")
+  )
