@@ -6,7 +6,7 @@ __Project Code Name: Sleep Deprivation__
 
 __Group members:__
 * Phuong Vu (pvu@uw.edu)
-* Yu-Wen Chen (yuwenwen511@gmail.com)
+* Yu-Wen Chen (wen0511@uw.edy)
 * Hanzhi Cao (hanzhc@uw.edu)
 * Vivian Law (lawv@uw.edu)
 
@@ -39,7 +39,7 @@ The audience of our project would mostly be college students and people who just
 * What is the current trend of sleep deprivation among adults?
 * What are the major causes leading to this trend in U.S.?
 * How does sleep deprivation in the U.S affect people’s daily performances? 
-* What are some potential health risks for not enough sleep? 
+* What are some potential health risks of not getting enough sleep? 
 
 ## 3.0 Possible data sets
 
@@ -85,7 +85,7 @@ The audience of our project would mostly be college students and people who just
 
 ### Yu-Wen Chen: 
 
-Working on this project, I now have a better understanding on how shiny, ggplot2, and dplyr function in R. At first, just by looking at the shiny app website people made from previous quarter, I was a little intimidated by how much work, research, and coding we have to do to create an interactive website with rich information and plots. However, as I worked through all the process with my team, I realized that building a website is pretty much like building a house. It seems hard and impossible, but if we just be patient and enjoy the process of “building”(which includes researching, coding, communicating with team members, overcoming difficulties) little by little, we will be surprised by how much we have done and how much we can do. However, although working with my team and building the project are interesting, it could be frustrating sometimes. I have struggled with finding relevant dataset and doing data wrangling, but the moment I got it right was so satisfying and I felt a sense of accomplishment. 
+Working on this project, I now have a better understanding on how shiny, ggplot2, and dplyr function in R. At first, just by looking at the shiny app website people made from previous quarter, I was a little intimidated by how much work, research, and coding we have to do to create an interactive website with rich information and plots. However, as I worked through all the process with my team, I realized that building a website is pretty much like building a house. It seems hard and impossible, but if we just be patient and enjoy the process of “building”(which includes researching, coding, communicating with team members, overcoming difficulties) little by little, we will be surprised by how much we have done and how much we can do. However, although working with my team and building the project are interesting, it could be frustrating sometimes. I have struggled with finding relevant dataset and doing data wrangling, but the moment I got it right was so satisfying and I felt a sense of accomplishment. This project is challenging but interesting. I enjoy working on it. 
 
 ### Hanzhi Cao: 
 
