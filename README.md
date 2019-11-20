@@ -8,7 +8,7 @@
 The main research question we will be answering is "how does sleep deprivation affect students' academic performance?" We will specifically be focusing on college students.
 
 ## Link to project proposal:
-[Project Proposal](projectproposal.md)
+[Project Proposal](docs/projectproposal.md)
 
 ## Link to project report: 
-[Project Report](project_report.md)
+[Project Report](docs/project_report.md)
