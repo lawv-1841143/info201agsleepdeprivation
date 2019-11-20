@@ -17,9 +17,30 @@ ui <- navbarPage(
             )
            ),
   tabPanel("Trend", 
-           titlePanel("The current sleeping time trend in U.S. population")),
+           tags$div(
+             h2("The current sleeping time trend in U.S. population"), 
+             sidebarLayout(
+               sidebarPanel(
+                 
+               ), 
+               mainPanel(
+                 plotOutput('us_timeline')
+               )
+             ), 
+             h2("Geographic map of US adults sleeping <7 hours"), 
+             plotOutput('us_map_7'))
+           ),
   tabPanel("Brutal Reality", 
-           titlePanel("The FACT that we are having less sleep hours...")), 
+           titlePanel("The FACT that we are having less sleep hours can..."), 
+           sidebarLayout(
+             sidebarPanel(
+               
+             ), 
+             mainPanel(
+               plotOutput('')
+             )
+           )
+  ), 
   navbarMenu("Causes", 
              tabPanel("Multiple Factors", 
                       titlePanel("Why are we staying up so late?")), 
