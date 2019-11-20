@@ -42,18 +42,6 @@ ggplot(data = grouped_df) +
   geom_smooth(mapping = aes(x = year, y = sleep_time)) +
   ggtitle("US adults sleeping times for the recent decades")
 
-# ??
-plot_ly(
-  x = c("Yes", "No"),
-  y = c(3.04, 3.24),
-  type = "bar"
-) %>% 
-  layout(
-    title = "Feeling tired, fatigued, or daytime sleepiness",
-    xaxis = list(title = "Answer"),
-    yaxis = list(title = "GPA")
-  )
-
 # data wrangling into data columns that needed in the map
 us_sleep_deprived <- US_df %>% 
   filter(MeasureId == "SLEEP") %>% 
@@ -69,15 +57,16 @@ new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
 colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
 # plot the US map with data info
-plot_usmap(new_df, regions = "state",
+plot_usmap(data = new_df, regions = "state",
            values = "percent", color = "white") +
-  scale_fill_continuous(low = "white", high = "steelblue4", 
+  scale_fill_continuous(low = "lightgrey", high = "black", 
                         name = "Sleep <7 hours(%)",
                         label = scales::comma) +
   theme(legend.position = "right") +
   ggtitle("Among all age group in U.S., 
 Percentage of population getting less than 7 hours sleep")
 
+# bar graph of GPA and feeling-tired relationship
 plot_ly(
   x = c("Yes", "No"),
   y = c(3.04, 3.24),
