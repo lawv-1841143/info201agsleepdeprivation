@@ -1,48 +1,82 @@
 library(dplyr)
-# analysis code for dataset and visualization
+library(stringr)
+library(ggplot2)
+library(plotly)
+library(usmap)
 
-# create a dataframs for life tracking time
+# Read in dataset
+sleep_data <- read.csv("data/sleep_data.csv", stringsAsFactors = FALSE)
+polysomnography_studies_df <- read.csv('data/polysomnography_studies.csv',
+                                       stringsAsFactors = F)
+actigraphic_studies_df <- read.csv('data/actigraphic_studies.csv',
+                                   stringsAsFactors = F)
 life_tracking_df <- read.csv('data/LifeTrackingProjectDataset.csv',
                              stringsAsFactors = F)
-# create a timeline(?) for people's everyday life and see the sleeping time
-# trend among people in the U.S.
-
-# create a dataframe for multiple causes for short sleep time
 sleep_causes_df <- read.csv("data/SleepStudyData.csv", stringsAsFactors = F)
-# we can create a pie chart here to show th eproportion of causes impacting
-# how people sleep in daily life
-
-# create a datafram about people's physical condition with short sleeps
 info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv", 
                           stringsAsFactors = F)
-# category: age group, sex. 
-# can see symptoms of sleep deprivation (anxiety, depression, snoring, ), and nap conditions. 
+# this .csv file is too large to be uploaded on to Github
+# will ask Andrey about this
+US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
+                       stringsAsFactors = F)
+# this is the version after data wrangling for that huge .csv file
+us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F)
+# read in dataset with US state and the lat and long
+statelatlong <- read.csv("data/statelatlong.csv", stringsAsFactors = F)
 
-# Big data file
-orginal_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv", 
-                          stringsAsFactors = F)
-us_sleep_deprived <- orginal_df %>% 
+# change column names into readable lines
+colnames(polysomnography_studies_df) <- c("year", "age_range", "sleep_time")
+colnames(actigraphic_studies_df) <- c("year", "age_range", "sleep_time")
+
+# reform the dataframe by grouping the sleep time by years
+polysomnography_grouped_df <- polysomnography_studies_df %>%
+  filter(year > 1989) %>% 
+  group_by(year) %>% 
+  summarize(sleep_time = mean(sleep_time))
+actigraphic_grouped_df <- actigraphic_studies_df %>% 
+  filter(year > 1989) %>% 
+  group_by(year) %>% 
+  summarize(sleep_time = mean(sleep_time))
+grouped_df <- rbind(polysomnography_grouped_df, actigraphic_grouped_df)
+
+# create a point plot and a best fit line
+sleep_in_years <- ggplot(data = grouped_df) + 
+  geom_point(mapping = aes(x = year, y = sleep_time)) +
+  geom_smooth(mapping = aes(x = year, y = sleep_time)) +
+  ggtitle("US adults sleeping times for the recent decades")
+
+# ??
+plot_ly(
+  x = c("Yes", "No"),
+  y = c(3.04, 3.24),
+  type = "bar"
+) %>% 
+  layout(
+    title = "Feeling tired, fatigued, or daytime sleepiness",
+    xaxis = list(title = "Answer"),
+    yaxis = list(title = "GPA")
+  )
+
+# ??
+us_sleep_deprived <- US_df %>% 
   filter(MeasureId == "SLEEP") %>% 
   select(Year, StateAbbr, CityName, Data_Value, PopulationCount, GeoLocation, Short_Question_Text)
 write.csv(us_sleep_deprived, file = "us_sleep_deprived.csv")
 
-# after data wrangling
-us_sleep_deprived <- read.csv("us_sleep_deprived.csv", stringsAsFactors = F)
-# read in dataset with US state and the lat and long
-statelatlong <- read.csv("data/statelatlong.csv", stringsAsFactors = F)
 # data wrangling with dataset, 
 new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
   filter(StateAbbr != "US") %>% 
   summarize(ave_percent = sum(Data_Value, na.rm = T) / n(),
             population = sum(PopulationCount)) %>%
   mutate(statelatlong$Latitude, statelatlong$Longitude)
-colnames(new_df) <- c("State", "Percent", "Population", "lat", "long")
+colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
-# create a color numeric scale
-pal <- colorNumeric("Yellow", domain = new_df$Percent)
 # plot the US map with data info
-map <- leaflet(new_df) %>%
-  addTiles() %>% 
-  setView(-98.483330, 38.712046, zoom = 4) %>% 
-  addPolygons(fillColor = ~pal(Percent))
-
+plot_usmap(data = new_df, regions = "state",
+           values = "percent", color = "white", labels = T) + 
+  scale_fill_continuous(low = "white", high = "steelblue4", 
+                        name = "Sleep <7 hours(%)",
+                        label = scales::comma) + 
+  theme(legend.position = "right") +
+  ggtitle("Among all age group in U.S., 
+Percentage of population getting less than 7 hours sleep")
