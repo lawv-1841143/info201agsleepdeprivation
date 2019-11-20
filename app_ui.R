@@ -37,7 +37,7 @@ ui <- navbarPage(
                
              ), 
              mainPanel(
-               plotOutput('hydro.playground.chart')
+               plotOutput('')
              )
            )
   ), 

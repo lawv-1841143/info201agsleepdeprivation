@@ -61,14 +61,17 @@ new_df <- group_by(us_sleep_deprived, StateAbbr) %>%
 colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
 # plot the US map with data info
-plot_usmap(data = new_df, regions = "state",
-           values = "percent", color = "white") +
+m <- plot_usmap(data = new_df, regions = "state",
+           values = "percent", color = "white",
+           ggplot2::aes(text = paste('State: ', new_df$state, '<br>',
+                        'Percentage: ', new_df$percent))) +
   scale_fill_continuous(low = "lightgrey", high = "black", 
                         name = "Sleep <7 hours(%)",
                         label = scales::comma) +
   theme(legend.position = "right") +
   ggtitle("Among all age group in U.S., 
 Percentage of population getting less than 7 hours sleep")
+ggplotly(m,tooltip = c("text"))
 
 # bar graph of GPA and feeling-tired relationship
 plot_ly(
