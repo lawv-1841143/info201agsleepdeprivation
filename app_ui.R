@@ -114,7 +114,7 @@ ui <- navbarPage(
                         p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
                         p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
                         p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
-                        h4("And a special thanks to Andrey Butenko, AKA. our TA who helped us a lot!! :)")
+                        h4("And a special thanks to Andrey Butenko, AKA our wonderful TA who helped us a lot!! :)")
                       )
               ),
              tabPanel("About Us",
