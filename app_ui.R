@@ -25,7 +25,7 @@ ui <- navbarPage(
                                     choices = list("Actigraphic Study" = 1,
                                                    "Polysomnography Study" = 2,
                                                    "Both Studies" = 3),
-                                    selected = 1),
+                                    selected = 3),
                  hr(),
                ),
                mainPanel(
@@ -37,7 +37,7 @@ ui <- navbarPage(
                sidebarPanel(
                  sliderInput("YearRange",
                              label = h3("Range of interest:"),
-                             min = 1991, max = 2019, value = 2000)
+                             min = 2016, max = 2019, value = 2017)
                ),
                mainPanel(
                  plotOutput('us_map_7')
@@ -46,6 +46,8 @@ ui <- navbarPage(
            )),
   tabPanel("Brutal Reality",
            titlePanel("The FACT that we are having less sleep hours can..."),
+           p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
+           p("Note: One of our partner is expected to complete this tab. However, she has been unresponsive. We would try to contact to have her complete this tab asap"),
            sidebarLayout(
              sidebarPanel(
 
@@ -57,9 +59,28 @@ ui <- navbarPage(
   ),
   navbarMenu("Causes",
              tabPanel("Multiple Factors",
-                      titlePanel("Why are we staying up so late?")),
+                      titlePanel("Why are we staying up so late?"),
+                      p("In the future, we would visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. ")
+                      ),
              tabPanel("Life Tracking Sample",
-                      titlePanel("Let's see what people in U.S. do during the day"))
+                      titlePanel("Let's see what people in U.S. do during the day"),
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("select.activities", label = h3("Select an activity to compare with sleep's time:"), 
+                                      choices = list("Cook" = 'life_tracking_df$cook', "Eat" = 'life_tracking_df$eat',
+                                                     "Math" = 'life_tracking_df$math', "Music" = 'life_tracking_df$music',
+                                                     "Pause" = 'life_tracking_df$pause', "Prep" = 'life_tracking_df$prep',
+                                                     "Uni" = 'life_tracking_df$uni', "Meditatior" = 'life_tracking_df$meditatior',
+                                                     "Special" = 'life_tracking_df$special', "Work" = 'life_tracking_df$work'), 
+                                      selected = 10),
+                          
+                          hr(),
+                        ),
+                        mainPanel(
+                          plotOutput('compared.bar')
+                        )
+                      )
+                      )
              ),
   tabPanel("Impact",
            titlePanel("Risks taken for shortened sleep"),
