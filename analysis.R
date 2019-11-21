@@ -45,7 +45,7 @@ draw_sleep_trend_plot <- function() {
     ggtitle("US adults sleeping times for the recent decades") +
     scale_x_continuous(name = "Year") +
     scale_y_continuous(name = "Sleep Time (minute)") +
-    labs(color = "Studies' Methods: ") 
+    labs(color = "Studies' Methods: ")
 }
 
 # data wrangling into data columns that needed in the map
@@ -67,16 +67,16 @@ colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 draw_us_sleep_map <- function() {
   plot_usmap(data = new_df, values = "percent", color = "white", labels = T,
              label_color = "white") +
-    scale_fill_continuous(low = "lightgrey", high = "black", 
+    scale_fill_continuous(low = "lightgrey", high = "black",
                           name = "Sleep <7 hours(%)",
                           label = scales::comma) +
     theme(legend.position = "right")
 }
 
 # version 1.1 with hover interaction --- failed
-ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels = T, 
+ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels = T,
                          label_color = "white") +
-                scale_fill_continuous(low = "lightgrey", high = "black", 
+                scale_fill_continuous(low = "lightgrey", high = "black",
                                       name = "Sleep <7 hours(%)",
                                       label = scales::comma) +
                 theme(legend.position = "right"),
@@ -91,33 +91,33 @@ plot_ly(
     layout(
       title = "Feeling tired, fatigued, or daytime sleepiness",
       xaxis = list(title = "Answer"),
-      yaxis = list(title = "GPA")
+      yaxis = list(title = "GPA", range = c(3.0, 3.5))
     )
 
 #add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
-  activity_time <- life_tracking_df %>% 
-    mutate(activity = paste0(activity, ":00")) %>% 
+  activity_time <- life_tracking_df %>%
+    mutate(activity = paste0(activity, ":00")) %>%
     pull(activity)
   activity_format <- times(activity_time)
   activity_hour <- hours(activity_format)
   activity_minute <- minutes(activity_format)
   total_activity_min <- 60 * activity_hour + activity_minute
-  life_tracking_df <- life_tracking_df %>% 
+  life_tracking_df <- life_tracking_df %>%
     mutate('new_col' = total_activity_min)
 }
 
 # add a column of total sleep time in minute
-life_tracking_df <- convert_to_min(life_tracking_df$sleep) %>% 
+life_tracking_df <- convert_to_min(life_tracking_df$sleep) %>%
   rename(sleep_time = new_col)
 
 # a function for bar graph of given sleep time and input time
 draw_compare_bar <- function(other) {
-  compare_table <- convert_to_min(other) %>% 
+  compare_table <- convert_to_min(other) %>%
     select(date, sleep_time, new_col)
   sleep_mean <- mean(compare_table$sleep_time, na.rm = T)
   other_mean <- mean(compare_table$new_col, na.rm = T)
-  
+
 #draw plot
 plot_ly(
   x = c("Sleep", "User's Choice"),
