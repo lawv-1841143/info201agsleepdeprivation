@@ -11,19 +11,9 @@ server <- function(input, output) {
   )
   #output$value <- renderPrint({input$YearRange})
   output$compared.bar <- renderPlot(
-    #activity <- input$select.activities,
     draw_compare_bar(input$select.activities)
   )
   output$sleep_GPA <- renderPlot(
-    plot_ly(
-      x = c("Yes", "No"),
-      y = c(3.04, 3.24),
-      type = "bar"
-    ) %>%
-      layout(
-        title = "Feeling tired, fatigued, or daytime sleepiness",
-        xaxis = list(title = "Answer"),
-        yaxis = list(title = "GPA")
-      )
+    draw_bar_graph_gpa_tired()
   )
 }

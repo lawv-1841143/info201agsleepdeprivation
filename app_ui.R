@@ -84,7 +84,7 @@ ui <- navbarPage(
              ),
   tabPanel("Impact",
            titlePanel("Risks taken for shortened sleep"),
-           plotOutput("sleep_GPA")),
+           plotOutput('sleep_GPA')),
   tabPanel("Conclusion",
            titlePanel("Conclusion")
            ),
