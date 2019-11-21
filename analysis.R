@@ -33,12 +33,18 @@ polysomnography_grouped_df <- group_by(polysomnography_studies_df, year) %>%
 actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time)) %>%
   mutate(type = "Actigraphic Study")
-grouped_df <- bind_rows(polysomnography_grouped_df, actigraphic_grouped_df) %>%
-  arrange(year)
 
 # create a point plot and a best fit line with color difference to emphasize
 # the data from two different study
-draw_sleep_trend_plot <- function() {
+draw_sleep_trend_plot <- function(number) {
+  if (number == 1) {
+    grouped_df <- actigraphic_grouped_df
+  }else if (number == 2) {
+    grouped_df <- polysomnography_grouped_df
+  }else {
+    grouped_df <- bind_rows(polysomnography_grouped_df, actigraphic_grouped_df) %>%
+      arrange(year)
+  }
   ggplot(data = grouped_df) +
     geom_point(mapping = aes(x = year, y = sleep_time, color = type)) +
     geom_smooth(mapping = aes(x = year, y = sleep_time)) +
