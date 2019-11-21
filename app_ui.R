@@ -1,5 +1,3 @@
-# install.packages("shinythemes")
-
 library(shiny)
 library(shinythemes)
 source('analysis.R')
@@ -22,11 +20,13 @@ ui <- navbarPage(
              h2("The current sleeping time trend in U.S. population"), 
              sidebarLayout(
                sidebarPanel(
-                 checkboxGroupInput("StudiesMethods",
+                 radioButtons("StudiesMethods",
                                     label = h3("Studies' Methods"), 
                                     choices = list("Actigraphic Study" = 1,
-                                                   "Polysomnography Study" = 2),
-                                    selected = 1)
+                                                   "Polysomnography Study" = 2,
+                                                   "Both Studies" = 3),
+                                    selected = 1),
+                 hr(),
                ), 
                mainPanel(
                  plotOutput('us_timeline')

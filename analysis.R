@@ -1,3 +1,4 @@
+library(lubridate)
 library(dplyr)
 library(stringr)
 library(ggplot2)
@@ -35,16 +36,17 @@ actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>%
 grouped_df <- bind_rows(polysomnography_grouped_df, actigraphic_grouped_df) %>%
   arrange(year)
 
-
 # create a point plot and a best fit line with color difference to emphasize
 # the data from two different study
-ggplot(data = grouped_df) +
-  geom_point(mapping = aes(x = year, y = sleep_time, color = type)) +
-  geom_smooth(mapping = aes(x = year, y = sleep_time)) +
-  ggtitle("US adults sleeping times for the recent decades") +
-  scale_x_continuous(name = "Year") +
-  scale_y_continuous(name = "Sleep Time (minute)") +
-  labs(color = "Studies' Methods: ")
+draw_sleep_trend_plot <- function() {
+  ggplot(data = grouped_df) +
+    geom_point(mapping = aes(x = year, y = sleep_time, color = type)) +
+    geom_smooth(mapping = aes(x = year, y = sleep_time)) +
+    ggtitle("US adults sleeping times for the recent decades") +
+    scale_x_continuous(name = "Year") +
+    scale_y_continuous(name = "Sleep Time (minute)") +
+    labs(color = "Studies' Methods: ") 
+}
 
 # data wrangling into data columns that needed in the map
 # us_sleep_deprived <- US_df %>%
@@ -62,12 +64,15 @@ colnames(new_df) <- c("state", "percent", "population", "lat", "long")
 
 # plot the US map with data info
 # version 1.0 without hover interaction ---- succeed
-plot_usmap(data = new_df, values = "percent", color = "white", labels = T,
-           label_color = "white") +
-  scale_fill_continuous(low = "lightgrey", high = "black", 
-                        name = "Sleep <7 hours(%)",
-                        label = scales::comma) +
-  theme(legend.position = "right")
+draw_us_sleep_map <- function() {
+  plot_usmap(data = new_df, values = "percent", color = "white", labels = T,
+             label_color = "white") +
+    scale_fill_continuous(low = "lightgrey", high = "black", 
+                          name = "Sleep <7 hours(%)",
+                          label = scales::comma) +
+    theme(legend.position = "right")
+}
+
 # version 1.1 with hover interaction --- failed
 ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels = T, 
                          label_color = "white") +
@@ -78,20 +83,25 @@ ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels =
               tooltip = c("value"))
 
 # bar graph of GPA and feeling-tired relationship
-plot_ly(
-  x = c("Yes", "No"),
-  y = c(3.04, 3.24),
-  type = "bar"
-) %>%
-  layout(
-    title = "Feeling tired, fatigued, or daytime sleepiness",
-    xaxis = list(title = "Answer"),
-    yaxis = list(title = "GPA")
-  )
+draw_bar_graph_gpa_tired <- function() {
+  plot_ly(
+    x = c("Yes", "No"),
+    y = c(3.04, 3.24),
+    type = "bar"
+  ) %>%
+    layout(
+      title = "Feeling tired, fatigued, or daytime sleepiness",
+      xaxis = list(title = "Answer"),
+      yaxis = list(title = "GPA")
+    )
+}
+
 
 # a function for bar graph of given sleep time and input time
 compare_bar <- function(other) {
   
-}quick_test <- life_tracking_df %>% 
+}
+quick_test <- life_tracking_df %>% 
   pull(cook)
-hour_format <- chron(quick_test, na.rm = TRUE)
+# time <- minute(quick_test)
+
