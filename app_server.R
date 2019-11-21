@@ -23,7 +23,7 @@ server <- function(input, output) {
       layout(
         title = "Feeling tired, fatigued, or daytime sleepiness",
         xaxis = list(title = "Answer"),
-        yaxis = list(title = "GPA")
+        yaxis = list(title = "GPA", range = c(3.0, 3.5))
       )
   )
 }
