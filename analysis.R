@@ -1,4 +1,4 @@
-library(lubridate)
+library(chron)
 library(dplyr)
 library(stringr)
 library(ggplot2)
@@ -83,8 +83,7 @@ ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels =
               tooltip = c("value"))
 
 # bar graph of GPA and feeling-tired relationship
-draw_bar_graph_gpa_tired <- function() {
-  plot_ly(
+plot_ly(
     x = c("Yes", "No"),
     y = c(3.04, 3.24),
     type = "bar"
@@ -94,14 +93,45 @@ draw_bar_graph_gpa_tired <- function() {
       xaxis = list(title = "Answer"),
       yaxis = list(title = "GPA")
     )
+
+#add a coloumn of total 'activity' time in minute
+convert_to_min <- function(activity) {
+  activity_time <- life_tracking_df %>% 
+    mutate(activity = paste0(activity, ":00")) %>% 
+    pull(activity)
+  activity_format <- times(activity_time)
+  activity_hour <- hours(activity_format)
+  activity_minute <- minutes(activity_format)
+  total_activity_min <- 60 * activity_hour + activity_minute
+  life_tracking_df <- life_tracking_df %>% 
+    mutate('new_col' = total_activity_min)
 }
 
+# add a column of total sleep time in minute
+life_tracking_df <- convert_to_min(life_tracking_df$sleep) %>% 
+  rename(sleep_time = new_col)
 
 # a function for bar graph of given sleep time and input time
-compare_bar <- function(other) {
+draw_compare_bar <- function(other) {
+  compare_table <- convert_to_min(other) %>% 
+    select(date, sleep_time, new_col)
+  sleep_mean <- mean(compare_table$sleep_time, na.rm = T)
+  other_mean <- mean(compare_table$new_col, na.rm = T)
   
+#draw plot
+plot_ly(
+  x = c("Sleep", "User's Choice"),
+  y = c(sleep_mean, other_mean),
+  text = c(paste0(round(sleep_mean / 1440 * 100, 1), "% of the day"),
+           paste0(round(other_mean / 1440 * 100, 1), "% of the day")),
+  hoverinfo = 'text',
+  type = "bar"
+) %>%
+  layout(
+    title = paste0("Average sleeping time vs user's choice's time over a month"),
+    xaxis = list(title = "Activities"),
+    yaxis = list(title = "Time(minute)")
+  )
 }
-quick_test <- life_tracking_df %>% 
-  pull(cook)
-# time <- minute(quick_test)
 
+draw_compare_bar(life_tracking_df$meditation)
