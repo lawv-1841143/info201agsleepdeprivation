@@ -128,7 +128,7 @@ ui <- navbarPage(
                         h3('Hanzhi Cao'),
                         p('Hanzhi Cao is an international student in UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
                         h3("Vivian Law"),
-                        p("NA")
+                        p("Vivian Law is a junior student at University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
                       )
               )
   )
