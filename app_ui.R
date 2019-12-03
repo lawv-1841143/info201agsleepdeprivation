@@ -49,13 +49,32 @@ ui <- navbarPage(
            p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
            
              sidebarPanel(
+               radioButtons("Gender",
+                                label = h3("Gender"),
+                                choices = list("Male" = 1,
+                                               "Female" = 2),
+                                selected = 1),
+               hr(),
 
              ),
              mainPanel(
-               plotOutput('')
+               plotOutput('info_sleep_df')
              )
            )
+  sidebarPanel(
+    radioButtons("Sleepdepriv",
+                label = h3("Sleepdepriv"),
+                 choices = list("Enough" = 1,
+                                "Tired" = 2),
+                 selected = 1),
+    hr(),
+    
   ),
+  mainPanel(
+    plotOutput('sleep_causes_df')
+  )
+)
+),
   navbarMenu("Causes",
              tabPanel("Multiple Factors",
                       titlePanel("Why are we staying up so late?"),
