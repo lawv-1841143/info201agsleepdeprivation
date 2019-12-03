@@ -47,8 +47,7 @@ ui <- navbarPage(
   tabPanel("Brutal Reality",
            titlePanel("The FACT that we are having less sleep hours can..."),
            p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-           p("Note: One of our partner is expected to complete this tab. However, she has been unresponsive. We would try to contact to have her complete this tab asap"),
-           sidebarLayout(
+           
              sidebarPanel(
 
              ),
