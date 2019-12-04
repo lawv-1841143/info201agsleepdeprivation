@@ -28,9 +28,11 @@ us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F
 statelatlong <- read.csv("data/statelatlong.csv", stringsAsFactors = F)
 
 # reform the dataframe by grouping the sleep time by years
+colnames(polysomnography_studies_df)[1] <- "year"
 polysomnography_grouped_df <- group_by(polysomnography_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time)) %>%
   mutate(type = "Polysomnography Study")
+colnames(actigraphic_studies_df)[1] <- "year"
 actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time)) %>%
   mutate(type = "Actigraphic Study")
@@ -149,6 +151,36 @@ plot_ly(
 new_sleep_info <- info_sleep_df %>% 
   group_by(AgeGroup) %>% 
   select(AgeGroup, HADS_Anxiety, HADS_Depression, KSQ_Panic, KSQ_Worry, KSQ_HealthProblem)
+new_sleep_info <- new_sleep_info[-13, ]
+colnames(new_sleep_info) <- c("age", "anxiety", "depression", "panic", "worry", "health")
+new_sleep_info$panic <- as.numeric(substring(new_sleep_info$panic, 1, 2))
+new_sleep_info$worry <- as.numeric(substring(new_sleep_info$worry, 1, 2))
+new_sleep_info$health <- as.numeric(substring(new_sleep_info$health, 1, 2))
+
+# test
+df <- new_sleep_info[new_sleep_info$age == "Young", ]
+result <- df[, 2] %>% 
+  mutate(1:nrow(df))
+colnames(result) <- c("symptom", "user")
+plot(data = result, x = ~user, y = ~symptom)
+
+# plot scatterplot for impacts
+plot_impacts <- function(age.group, symptoms) {
+  df <- new_sleep_info[new_sleep_info$age == age.group, ]
+  df <- df[, symptoms] %>% 
+    mutate(1:nrow(df))
+  plot_ly(
+    data = df, 
+    x = nrow(df),
+    y = df[, symptoms],
+    type = "scatter"
+  ) %>%
+    layout(
+      title = "Average sleeping time vs user's choice's time over a month",
+      xaxis = list(title = "Activities"),
+      yaxis = list(title = "Time(minute)")
+    )
+}
 
 # draw pie chart for cause factors
 draw_pie <- function() {
@@ -160,4 +192,3 @@ draw_pie <- function() {
   pie(slices, labels = label, col = rainbow(length(label)),
       main = "Pie Chart of Multiple Factors of Sleep Deprivation")
 }
-draw_pie()
