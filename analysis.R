@@ -162,14 +162,15 @@ df <- new_sleep_info[new_sleep_info$age == "Young", ]
 result <- df[, 2] %>%
   mutate(1:nrow(df))
 colnames(result) <- c("symptom", "user")
-plot(data = result, x = ~user, y = ~symptom)
+ggplot(result, aes(x=user, y=symptom, color=symptom)) + geom_point()
 
 # plot scatterplot for impacts
 plot_impacts <- function(age.group, symptoms) {
   df <- new_sleep_info[new_sleep_info$age == age.group, ]
   df <- df[, symptoms] %>%
     mutate(1:nrow(df))
-  # plotting left
+  colnames(result) <- c("symptom", "user")
+  ggplot(result, aes(x=user, y=symptom, color=symptom)) + geom_point()
 }
 
 # draw pie chart for cause factors

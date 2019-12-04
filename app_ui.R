@@ -124,13 +124,32 @@ ui <- fluidPage(
       "Impact",
       titlePanel("Risks taken for shortened sleep"),
       sidebarLayout(
-        sidebarPanel(
-          p("SOMETHING")
+        radioButtons("age",
+                     label = h3("Age Groups"),
+                     choices = list(
+                       "Young" = "Young",
+                       "Old" = "Old"
+                     ),
+                     selected = "young"
+        ), 
+        hr(),
+        radioButtons("symptoms",
+                     label = h3("Possible Symptoms"),
+                     choices = list(
+                       "Anxiety" = 2, 
+                       "Depression" = 3, 
+                       "Panic" = 4, 
+                       "Worry" = 5, 
+                       "Health" = 6
+                     ),
+                     selected = 2
         ),
         mainPanel(
-          plotlyOutput("sleep_GPA")
+          plotOutput("sleep_impacts")
         )
-      )
+      ), 
+      h2("The relationship between sleep deprivation and student's GPA"), 
+      plotlyOutput("sleep_GPA")
     ),
     tabPanel(
       "Conclusion",
