@@ -164,8 +164,8 @@ a2 <- mean(df2$depression)
 # test
 df <- new_sleep_info[new_sleep_info$age == "Young", ]
 df$user <- 1:nrow(df)
-result <- df %>% 
-  select(anxiety, user) 
+result <- df %>%
+  select(anxiety, user)
 ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
   geom_hline(aes(yintercept = mean(anxiety), color = anxiety))
 
@@ -173,8 +173,8 @@ ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
 plot_impacts <- function(age.group, symptoms) {
   df <- new_sleep_info[new_sleep_info$age == age.group, ]
   df$user <- 1:nrow(df)
-  result <- df %>% 
-    select(symptoms, user) 
+  result <- df %>%
+    select(symptoms, user)
   ggplot(result, aes(x=user, y=symptoms, color=symptoms)) + geom_point() +
     geom_hline(aes(yintercept = mean(symptoms), color = symptoms))
 }
@@ -186,4 +186,33 @@ draw_pie <- function() {
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return(p)
+}
+
+calculate_sleep <- function(age, wake_up) {
+  if (age == 1) {
+    amount <- 12
+  }else if (age <= 2) {
+    amount <- 11
+  }else if(age <= 5) {
+    amount <- 10
+  }else if(age <= 12) {
+    amount <- 9
+  }else if(age <= 18) {
+    amount <- 8
+  }else {
+    amount <- 7
+  }
+  suppose_sleep <- wake_up - amount
+  if (suppose_sleep < 0) {
+    suppose_sleep <- 24 + suppose_sleep
+  }
+  statement <- paste0("Your bed time should be before ", suppose_sleep, ":00")
+}
+
+age_statement <- function(age) {
+  statement <- paste0("You are ", age, " years old!")
+}
+
+wake_statement <- function(time) {
+  statement <- paste0("You need to wake up at ", time, ":00")
 }
