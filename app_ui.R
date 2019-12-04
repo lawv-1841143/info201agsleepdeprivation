@@ -53,9 +53,9 @@ ui <- fluidPage(
              ),
              mainPanel(
                plotOutput('info_sleep_df')
-             )
              ),
-           sidebarLayout(
+           p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
+           ),
   sidebarPanel(
     radioButtons("Sleepdepriv",
                 label = h3("Sleepdepriv"),
@@ -63,6 +63,7 @@ ui <- fluidPage(
                                 "Tired" = 2),
                  selected = 1),
     hr(),
+    p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
 
   ),
   mainPanel(
@@ -130,7 +131,7 @@ tabPanel(
                         p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
                         p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
                         p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
-                        h4("And a special thanks to Andrey Butenko, AKA our wonderful TA who helped us a lot!! :)")
+                        h4("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :)")
                       )
               ),
              tabPanel("About Us",
@@ -149,4 +150,4 @@ tabPanel(
               )
   )
 )
-)
+
