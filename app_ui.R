@@ -136,13 +136,13 @@ ui <- fluidPage(
         radioButtons("symptoms",
                      label = h3("Possible Symptoms"),
                      choices = list(
-                       "Anxiety" = 2, 
-                       "Depression" = 3, 
-                       "Panic" = 4, 
-                       "Worry" = 5, 
-                       "Health" = 6
+                       "Anxiety" = "axiety", 
+                       "Depression" = "depression", 
+                       "Panic" = "panic", 
+                       "Worry" = "worry", 
+                       "Health" = "health"
                      ),
-                     selected = 2
+                     selected = "axiety"
         ),
         mainPanel(
           plotOutput("sleep_impacts")
