@@ -53,8 +53,13 @@ ui <- fluidPage(
              mainPanel(
                plotOutput('info_sleep_df')
              )
+<<<<<<< HEAD
+           p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
+           )
+=======
              ),
            sidebarLayout(
+>>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
   sidebarPanel(
     radioButtons("Sleepdepriv",
                 label = h3("Sleepdepriv"),
@@ -62,6 +67,7 @@ ui <- fluidPage(
                                 "Tired" = 2),
                  selected = 1),
     hr(),
+    p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
     
   ),
   mainPanel(
@@ -94,7 +100,11 @@ tabPanel(
                         )
                       )
                       )
+<<<<<<< HEAD
+             
+=======
   )
+>>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
              ),
   tabPanel("Impact",
            titlePanel("Risks taken for shortened sleep"),
