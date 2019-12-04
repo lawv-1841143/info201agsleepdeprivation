@@ -59,8 +59,7 @@ ui <- navbarPage(
              ),
              mainPanel(
                plotOutput('info_sleep_df')
-             )
-           )
+             ),
   sidebarPanel(
     radioButtons("Sleepdepriv",
                 label = h3("Sleepdepriv"),
@@ -73,8 +72,8 @@ ui <- navbarPage(
   mainPanel(
     plotOutput('sleep_causes_df')
   )
-)
 ),
+tabPanel(
   navbarMenu("Causes",
              tabPanel("Multiple Factors",
                       titlePanel("Why are we staying up so late?"),
@@ -85,11 +84,11 @@ ui <- navbarPage(
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("select.activities", label = h3("Select an activity to compare with sleep's time:"), 
-                                      choices = list("Cook" = 'life_tracking_df$cook', "Eat" = 'life_tracking_df$eat',
-                                                     "Math" = 'life_tracking_df$math', "Music" = 'life_tracking_df$music',
-                                                     "Pause" = 'life_tracking_df$pause', "Prep" = 'life_tracking_df$prep',
-                                                     "Uni" = 'life_tracking_df$uni', "Meditatior" = 'life_tracking_df$meditatior',
-                                                     "Special" = 'life_tracking_df$special', "Work" = 'life_tracking_df$work'), 
+                                      choices = list("Cook" = 'cook', "Eat" = 'eat',
+                                                     "Math" = 'math', "Music" = 'music',
+                                                     "Pause" = 'pause', "Prep" = 'prep',
+                                                     "Uni" = 'uni', "Meditatior" = 'meditatior',
+                                                     "Special" = 'special', "Work" = 'work'), 
                                       selected = 10),
                           
                           hr(),
@@ -99,6 +98,7 @@ ui <- navbarPage(
                         )
                       )
                       )
+  )
              ),
   tabPanel("Impact",
            titlePanel("Risks taken for shortened sleep"),

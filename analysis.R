@@ -105,12 +105,9 @@ draw_bar_graph_gpa_tired <- function() {
 
 #add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
-  print(activity)
-  print(life_tracking_df)
   activity_time <- life_tracking_df %>%
     mutate(activity = paste0(!!as.name(activity), ":00")) %>%
     pull(activity)
-  print(activity_time)
   activity_format <- times(activity_time)
   activity_hour <- hours(activity_format)
   activity_minute <- minutes(activity_format)
