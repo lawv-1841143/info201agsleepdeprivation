@@ -17,7 +17,6 @@ sleep_causes_df <- read.csv("data/SleepStudyData.csv", stringsAsFactors = F)
 info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
                           stringsAsFactors = F)
 # this .csv file is too large to be uploaded on to Github
-# will ask Andrey about this
 # US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv",
 #                        stringsAsFactors = F)
 # colnames(US_df)[1] <- "Year"
@@ -143,3 +142,8 @@ plot_ly(
     yaxis = list(title = "Time(minute)")
   )
 }
+
+# impacts for sleep deprivation
+new_sleep_info <- info_sleep_df %>% 
+  group_by(AgeGroup) %>% 
+  select(AgeGroup, HADS_Anxiety, HADS_Depression, KSQ_Panic, KSQ_Worry, KSQ_HealthProblem)
