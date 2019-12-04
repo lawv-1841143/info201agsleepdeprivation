@@ -10,7 +10,9 @@ ui <- fluidPage(
     tabPanel(
       "Background",
       tags$div(
-        p("This project digs deeper into people's daily life and looks especially into the area of sleeping and its related fields. We all know that the most important requirement for daily performance including concentration, calculation and reaction is to have enough rest during the night. The U.S. population, however, is facing a decline in recent decades in sleeping time and quality. In this project, we'll discuss the causes leading to this trend, the hidden impacts and some suggestions to people on how to get a good rest. "),
+        h2("About This Project:"), 
+        p("In today’s society, people sacrifice their sleep time for various reasons: studying for exams, finishing up work or tasks, suffering from anxiety or sleep disorders… etc. No matter what the reasons are, they all contribute to sleep deprivation. Since people not getting enough sleep has become a global phenomenon, it is important to learn about its effect and what sleep deprivation is like in society."), 
+        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."), 
         h2("Page Description"),
         p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
         p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
@@ -48,7 +50,9 @@ ui <- fluidPage(
         p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."), 
         p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"), 
         h2("Geographic map of US adults sleeping <7 hours"),
-        plotOutput("us_map_7")
+        plotOutput("us_map_7"), 
+        p("The geographic map illustrates the percentage of people in each state in the U.S that sleep less than 7 hours. As the percentage of people gets higher, the black color goes darker. As shown in the graph, states that have the largest population of having less than 7 hours of sleep are mostly located in the Midwest. On the contrary, western states tend to have fewer people who do not get sufficient sleep."), 
+        p("This graph allows people to have a brief idea of a lack of sleep in each state at one glance. People can easily pick up the states which they want to have a closer look on sleeping issues accordingly to the information presented in the graph.")
       )
     ),
     tabPanel(
@@ -101,7 +105,10 @@ ui <- fluidPage(
         "Multiple Factors",
         titlePanel("Why are we staying up so late?"),
         p("University students answered to a self-report of multiple causes of their sleep deprivation, which are categorized into the below pie chart: "),
-        plotlyOutput("pie_chart")
+        plotlyOutput("pie_chart"), 
+        p("The interactive pie chart demonstrates the most common factors that cause U.S college students stay up so late at night based on the survey. Although there are 14 categories presenting on this chart, it could be organized to 4."), 
+        p("The first one is Dorm/Sleeping environment’s poor quality, including tobacco smoke in sleeping room(7.97%), room’s bad air quality(6.89%), room scents(6.64%), and noise from next door (6.5%). The second category is student’s mental state and feelings, including stress (8.1%), fatigue (6.69%), sadness (6.64%), depression (7.97%), being patient (6.89)and finally, anxiety and tension (6.39%). The third category is student’s physical state, which are pain (7.87%) and strenuous physical activity (6.74%). The fourth category is family issue, making up 7.82 % of the pie chart. (The rest of the 6 percent is reported as other.)"), 
+        p("Overall, students’ poor sleeping/ resting environment makes up 28 % of the pie chart while student’s mental state takes up to 42.6 %, almost half of the sleep deprived students is affected by their mental states. Physical state occupied 14.61 percent of the chart and family issue has least effect on student sleep, which is only 7.82 percent. ")
       ),
       tabPanel(
         "Life Tracking Sample",
@@ -119,13 +126,14 @@ ui <- fluidPage(
                         ),
                         selected = 10
             ),
-
             hr(),
           ),
           mainPanel(
             plotlyOutput("compared.bar")
           )
-        )
+        ), 
+        p("Let's see what people in U.S. do during the day:"), 
+        p("The graph allows people to look closely at the time spent on each activity and compare it to their sleeping time. The range of activity includes housework, schoolwork, leisure activities, and full-time work. People can easily compare and see how people manage their time for different tasks and sleeping.")
       )
     ),
     tabPanel(
