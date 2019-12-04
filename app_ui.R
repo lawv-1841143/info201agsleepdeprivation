@@ -75,14 +75,10 @@ ui <- fluidPage(
           tags$div(
             p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
           ),
-          plotOutput("info_sleep_df")
+          plotlyOutput('br1')
         )
       ),
-             mainPanel(
-               plotOutput('br1')
-             ),
-           p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
-           ),
+      tags$hr(),
            sidebarLayout(
   sidebarPanel(
     radioButtons("Sleepdepriv",
@@ -90,12 +86,13 @@ ui <- fluidPage(
                  choices = list("Enough" = 1,
                                 "Tired" = 2),
                  selected = 1),
-    hr(),
-    p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
-
+    hr()
   ),
   mainPanel(
-    plotOutput('br2')
+    tags$div(
+      p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
+    ),
+    plotlyOutput('br2')
   )
            )
 ),
