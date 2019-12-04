@@ -175,8 +175,8 @@ plot_impacts <- function(age.group, symptoms) {
   df$user <- 1:nrow(df)
   result <- df %>%
     select(symptoms, user)
-  ggplot(result, aes(x=user, y=symptoms, color=symptoms)) + geom_point() +
-    geom_hline(aes(yintercept = mean(symptoms), color = symptoms))
+  ggplot(result, aes(x=user, y=!!as.name(symptoms), color=!!as.name(symptoms))) + geom_point() +
+    geom_hline(aes(yintercept = mean(!!as.name(symptoms)), color = !!as.name(symptoms)))
 }
 
 # draw pie chart for cause factors
@@ -207,6 +207,7 @@ calculate_sleep <- function(age, wake_up) {
     suppose_sleep <- 24 + suppose_sleep
   }
   statement <- paste0("Your bed time should be before ", suppose_sleep, ":00")
+  return(statement)
 }
 
 age_statement <- function(age) {

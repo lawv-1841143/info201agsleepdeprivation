@@ -193,9 +193,9 @@ ui <- fluidPage(
                       value = 8)
         ),
         mainPanel(
-          column(4, verbatimTextOutput("years_old")),
-          column(4, verbatimTextOutput("awake")),
-          column(4, verbatimTextOutput("sleep_time")),
+          textOutput("years_old"),
+          textOutput("awake"),
+          textOutput("sleep_time")
         )
       )
     ),
