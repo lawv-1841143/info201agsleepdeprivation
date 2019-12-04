@@ -16,4 +16,10 @@ server <- function(input, output) {
   output$sleep_GPA <- renderPlot(
     draw_bar_graph_gpa_tired()
   )
+  output$br1 <- renderPlot(
+    draw_br1()
+  )
+  output$br2 <- renderPlot(
+    draw_br2()
+  )
 }
