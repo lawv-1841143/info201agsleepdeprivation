@@ -137,6 +137,17 @@ ui <- fluidPage(
       tags$div(
         h2("Conclusion"),
         p("The strength of our project is that our resources for datasets are from authentic organizations, including American Academy of Sleep Medicine (AASM), National Alliance on Mental Illness (NAMI), and the Centers for Disease Control and Prevention (CDC). By using these credible sources, our group ensures that the information presented in our project is reliable. On the other hand, one of the weaknesses of our project is the narrow age range we covered. We only targeted people aged from 18 to 39, which makes up about 26.3 percent of the U.S population. he project could be more applicable to more users. The main lesson our team learned from this project is, the sleeping trend in the U.S in recent years is getting worse. We found out that the lack of sleep could affect not only students' academic performance but also human health. In the future, people could improve the project by extending the age group and provide suggestions to improve people’s sleeping time and sleeping quality. Our team would also like to look deeper into the sleeping trend in different countries other than the U.S to make a comparison, as well as how foreign governments approach sleeping issues.")
+      ),
+      sidebarLayout(
+        sidebarPanel(
+          sliderInput("age_years", "How old ar,e you?",
+                      min = 1, max = 99,
+                      value = 19),
+          sliderInput("awake_time", "What time do you need to wake up?",
+                      min = 0.5, max = 23.5,
+                      value = 8)
+        ),
+        mainPanel()
       )
     ),
     navbarMenu(
