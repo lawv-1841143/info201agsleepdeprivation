@@ -101,45 +101,6 @@ ui <- fluidPage(
 #   )
 #            )
 # ),
-# tabPanel(
-#   navbarMenu("Causes",
-#              tabPanel("Multiple Factors",
-#                       titlePanel("Why are we staying up so late?"),
-#                       p("In the future, we would visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. ")
-#                       ),
-#              tabPanel("Life Tracking Sample",
-#                       titlePanel("Let's see what people in U.S. do during the day"),
-#                       sidebarLayout(
-#                         sidebarPanel(
-#                           selectInput("select.activities", label = h3("Select an activity to compare with sleep's time:"), 
-#                                       choices = list("Cook" = 'cook', "Eat" = 'eat',
-#                                                      "Math" = 'math', "Music" = 'music',
-#                                                      "Pause" = 'pause', "Prep" = 'prep',
-#                                                      "Uni" = 'uni', "Meditatior" = 'meditatior',
-#                                                      "Special" = 'special', "Work" = 'work'), 
-#                                       selected = 10),
-#                           
-#                           hr()),
-#       sidebarLayout(
-#         sidebarPanel(
-#           radioButtons("Sleepdepriv",
-#                        label = h3("Sleepdepriv"),
-#                        choices = list(
-#                          "Enough" = 1,
-#                          "Tired" = 2
-#                        ),
-#                        selected = 1
-#           ),
-#           hr(),
-#         ),
-#         mainPanel(
-#           tags$div(
-#             p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
-#           ),
-#           plotOutput("sleep_causes_df")
-#         )
-#       )
-#     ),
     navbarMenu(
       "Causes",
       tabPanel(
