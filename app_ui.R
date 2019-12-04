@@ -39,14 +39,14 @@ ui <- fluidPage(
             plotOutput("us_timeline")
           )
         ),
-        p("This graph represents the average sleep time in minutes for adults (18-39) in the U.S from 2000 to 2015. The study methods include *Actigraphic Study and *Polysomnography Study."), 
+        p("This graph represents the average sleep time in minutes for adults (18-39) in the U.S from 2000 to 2015. The study methods include *Actigraphic Study and *Polysomnography Study."),
         p("For Actigraphic Study, the trend experiences a drastic decline from the year 2000 (the highest point) to 2002, then it turns to a small and steady decline until 2006. Starting from 2006, the trend grows constantly for three years then keeps decreasing to its lowest point at the end."),
-        p("For Polysomnography Study, the trend remains steady from the beginning year, 2000, to 2006. It increases by little for half of a year then goes down constantly with small fluctuation. Starting from 2009, when the trend reaches its lowest point, it goes upward slowly until the end."), 
-        p("Note:"), 
+        p("For Polysomnography Study, the trend remains steady from the beginning year, 2000, to 2006. It increases by little for half of a year then goes down constantly with small fluctuation. Starting from 2009, when the trend reaches its lowest point, it goes upward slowly until the end."),
+        p("Note:"),
         p("* Actigraphic Study: Actigraphy is a non-invasive technique used to assess cycles of activity and rest over several days to several weeks."),
-        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/s/sleep-disorder-tests/procedures/actigraphy.html)"), 
-        p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."), 
-        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"), 
+        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/s/sleep-disorder-tests/procedures/actigraphy.html)"),
+        p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."),
+        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"),
         h2("Geographic map of US adults sleeping <7 hours"),
         plotOutput("us_map_7")
       )
@@ -132,31 +132,33 @@ ui <- fluidPage(
       "Impact",
       titlePanel("Risks taken for shortened sleep"),
       sidebarLayout(
+        sidebarPanel(
         radioButtons("age",
                      label = h3("Age Groups"),
                      choices = list(
                        "Young" = "Young",
                        "Old" = "Old"
                      ),
-                     selected = "young"
-        ), 
+                     selected = "Young"
+        ),
         hr(),
         radioButtons("symptoms",
                      label = h3("Possible Symptoms"),
                      choices = list(
-                       "Anxiety" = "axiety", 
-                       "Depression" = "depression", 
-                       "Panic" = "panic", 
-                       "Worry" = "worry", 
+                       "Anxiety" = "anxiety",
+                       "Depression" = "depression",
+                       "Panic" = "panic",
+                       "Worry" = "worry",
                        "Health Problems" = "health"
                      ),
-                     selected = "axiety"
-        ),
+                     selected = "anxiety"
+        )
+                     ),
         mainPanel(
           plotOutput("sleep_impacts")
         )
-      ), 
-      h2("The relationship between sleep deprivation and student's GPA"), 
+      ),
+      h2("The relationship between sleep deprivation and student's GPA"),
       plotlyOutput("sleep_GPA")
     ),
     tabPanel(
@@ -197,8 +199,8 @@ ui <- fluidPage(
           p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
           p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
           p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
-          p(""), 
-          p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."), 
+          p(""),
+          p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."),
           h4("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :) ")
         )
       ),

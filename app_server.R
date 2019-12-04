@@ -22,8 +22,12 @@ server <- function(input, output) {
   output$sleep_GPA <- renderPlotly({
     return(draw_bar_graph_gpa_tired())
   })
-  output$years_old <- renderPrint({})
-  output$awake <- renderPrint({})
+  output$years_old <- renderPrint({
+    age_statement(input$age_years)
+  })
+  output$awake <- renderPrint({
+    wake_statement(input$awake_time)
+  })
   output$sleep_time <- renderPrint({
     calculate_sleep(input$age_years, input$awake_time)
   })

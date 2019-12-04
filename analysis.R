@@ -164,8 +164,8 @@ a2 <- mean(df2$depression)
 # test
 df <- new_sleep_info[new_sleep_info$age == "Young", ]
 df$user <- 1:nrow(df)
-result <- df %>% 
-  select(anxiety, user) 
+result <- df %>%
+  select(anxiety, user)
 ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
   geom_hline(aes(yintercept = mean(anxiety), color = anxiety))
 
@@ -173,8 +173,8 @@ ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
 plot_impacts <- function(age.group, symptoms) {
   df <- new_sleep_info[new_sleep_info$age == age.group, ]
   df$user <- 1:nrow(df)
-  result <- df %>% 
-    select(symptoms, user) 
+  result <- df %>%
+    select(symptoms, user)
   ggplot(result, aes(x=user, y=symptoms, color=symptoms)) + geom_point() +
     geom_hline(aes(yintercept = mean(symptoms), color = symptoms))
 }
