@@ -55,57 +55,52 @@ ui <- fluidPage(
         p("This graph allows people to have a brief idea of a lack of sleep in each state at one glance. People can easily pick up the states which they want to have a closer look on sleeping issues accordingly to the information presented in the graph.")
       )
     ),
-    tabPanel(
-      "Brutal Reality",
-      titlePanel("The FACT that we are having less sleep hours can..."),
-      p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-      sidebarLayout(
-        sidebarPanel(
-          radioButtons("Gender",
-                       label = h3("Gender"),
-                       choices = list(
-                         "Male" = 1,
-                         "Female" = 2
-                       ),
-                       selected = 1
-          ),
-          hr()
-        ),
-        mainPanel(
-          tags$div(
-            p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
-          ),
-          plotOutput("info_sleep_df")
-        )
-      ),
-
-<<<<<<< HEAD
-             ),
-             mainPanel(
-               plotOutput('br1')
-             )
-<<<<<<< HEAD
-           p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
-           )
-=======
-             ),
-           sidebarLayout(
->>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
-  sidebarPanel(
-    radioButtons("Sleepdepriv",
-                label = h3("Sleepdepriv"),
-                 choices = list("Enough" = 1,
-                                "Tired" = 2),
-                 selected = 1),
-    hr(),
-    p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
-    
-  ),
-  mainPanel(
-    plotOutput('br2')
-  )
-           )
-),
+#     tabPanel(
+#       "Brutal Reality",
+#       titlePanel("The FACT that we are having less sleep hours can..."),
+#       p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
+#       sidebarLayout(
+#         sidebarPanel(
+#           radioButtons("Gender",
+#                        label = h3("Gender"),
+#                        choices = list(
+#                          "Male" = 1,
+#                          "Female" = 2
+#                        ),
+#                        selected = 1
+#           ),
+#           hr()
+#         ),
+#         mainPanel(
+#           tags$div(
+#             p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
+#           ),
+#           plotOutput("info_sleep_df")
+#         )
+#       ),
+#              ),
+#              mainPanel(
+#                plotOutput('br1')
+#              ),
+#            p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
+#            )
+#              ),
+#            sidebarLayout(
+#   sidebarPanel(
+#     radioButtons("Sleepdepriv",
+#                 label = h3("Sleepdepriv"),
+#                  choices = list("Enough" = 1,
+#                                 "Tired" = 2),
+#                  selected = 1),
+#     hr(),
+#     p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
+#     
+#   ),
+#   mainPanel(
+#     plotOutput('br2')
+#   )
+#            )
+# ),
 tabPanel(
   navbarMenu("Causes",
              tabPanel("Multiple Factors",
@@ -124,8 +119,7 @@ tabPanel(
                                                      "Special" = 'special', "Work" = 'work'), 
                                       selected = 10),
                           
-                          hr(),
-=======
+                          hr()),
       sidebarLayout(
         sidebarPanel(
           radioButtons("Sleepdepriv",
@@ -170,7 +164,6 @@ tabPanel(
                           "Pause" = "pause", "Prep" = "prep",
                           "Uni" = "uni", "Meditation" = "meditation",
                           "Special" = "special", "Work" = "work"
->>>>>>> ba9252de77ebefff5ecdefa3ecdf5f38e0e9328f
                         ),
                         selected = 10
             ),
