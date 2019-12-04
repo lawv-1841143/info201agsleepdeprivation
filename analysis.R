@@ -128,23 +128,11 @@ life_tracking_df <- convert_to_min("sleep") %>%
 draw_compare_bar <- function(other) {
   compare_table <- convert_to_min(other) %>%
     select(date, sleep_time, new_col)
-  sleep_mean <- mean(compare_table$sleep_time, na.rm = T)
-  other_mean <- mean(compare_table$new_col, na.rm = T)
+#  sleep_mean <- mean(compare_table$sleep_time, na.rm = T)
+#  other_mean <- mean(compare_table$new_col, na.rm = T)
 
 #draw plot
-plot_ly(
-  x = c("Sleep", "User's Choice"),
-  y = c(sleep_mean, other_mean),
-  text = c(paste0(round(sleep_mean / 1440 * 100, 1), "% of the day"),
-           paste0(round(other_mean / 1440 * 100, 1), "% of the day")),
-  hoverinfo = 'text',
-  type = "bar"
-) %>%
-  layout(
-    title = paste0("Average sleeping time vs user's choice's time over a month"),
-    xaxis = list(title = "Activities"),
-    yaxis = list(title = "Time(minute)")
-  )
+
 }
 
 # impacts for sleep deprivation

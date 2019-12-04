@@ -5,7 +5,7 @@ source("analysis.R")
 
 ui <- fluidPage(
   navbarPage(
-    theme = shinytheme("superhero"),
+    theme = shinytheme("cyborg"),
     "Sleep Deprivation",
     tabPanel(
       "Background",
@@ -183,8 +183,14 @@ ui <- fluidPage(
         h2("Conclusion"),
         p("The strength of our project is that our resources for datasets are from authentic organizations, including American Academy of Sleep Medicine (AASM), National Alliance on Mental Illness (NAMI), and the Centers for Disease Control and Prevention (CDC). By using these credible sources, our group ensures that the information presented in our project is reliable. On the other hand, one of the weaknesses of our project is the narrow age range we covered. We only targeted people aged from 18 to 39, which makes up about 26.3 percent of the U.S population. he project could be more applicable to more users. The main lesson our team learned from this project is, the sleeping trend in the U.S in recent years is getting worse. We found out that the lack of sleep could affect not only students' academic performance but also human health. In the future, people could improve the project by extending the age group and provide suggestions to improve people’s sleeping time and sleeping quality. Our team would also like to look deeper into the sleeping trend in different countries other than the U.S to make a comparison, as well as how foreign governments approach sleeping issues.")
       ),
+      tags$hr(),
+      tags$div(
+        h2("Suggested sleep-time according to your age:"),
+        h4("The sleep time calculator allows the user to choose their age and the time they plan to wake up. Then the calculator will calculate the hours of sleep time the user needs based on the information given. "),
+      ),
       sidebarLayout(
         sidebarPanel(
+          h3("Sleep-time calculation"), 
           sliderInput("age_years", "How old are you?",
                       min = 1, max = 99,
                       value = 19),
@@ -215,7 +221,7 @@ ui <- fluidPage(
           p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
           p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
           p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
-          p(""),
+          p("[11] 2019 American Academy of Sleep Medicine. (n.d.). Make Time 2 Sleep. Retrieved December 4, 2019, from http://sleepeducation.org/healthysleep/Make-Time-2-Sleep-Bedtime-Calculator?fbclid=IwAR0YjgcVl6BzJW1CFOCoVq0s3niDqMt5Ju5NOzePy6Nm1OBt2halh21spGs."),
           p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."),
           h4("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :) ")
         )
@@ -223,20 +229,18 @@ ui <- fluidPage(
       tabPanel(
         "About Us",
         titlePanel("More Information on project members!"),
-        tags$div(
-          img(src = 'pvu.jpg'),
-          h3("Phuong Vu"),
-          p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
-          tags$img(src = 'ychen.jpg'),
-          h3("Yu-Wen Chen"),
-          p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
-          tags$img(src = 'hcao.jpg'),
-          h3("Hanzhi Cao"),
-          p("Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience."),
-          tags$img(src = 'vlaw.jpg'),
-          h3("Vivian Law"),
-          p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture.")
-        )
+        imageOutput('pvu', height = 400), 
+        h3("Phuong Vu"),
+        p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
+        imageOutput('ychen', height = 400),
+        h3("Yu-Wen Chen"),
+        p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
+        imageOutput('hcao', height = 400),
+        h3("Hanzhi Cao"),
+        p("Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience."),
+        imageOutput('vlaw', height = 400),
+        h3("Vivian Law"),
+        p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture.")
       )
     )
   )

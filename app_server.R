@@ -31,4 +31,32 @@ server <- function(input, output) {
   output$sleep_time <- renderText({
     calculate_sleep(input$age_years, input$awake_time)
   })
+  output$pvu <- renderImage({
+    return(list(
+      src = "pvu.jpg",
+      contentType = "image/jpg", 
+      height = 400
+    ))
+  }, deleteFile = FALSE)
+  output$ychen <- renderImage({
+    return(list(
+      src = "ychen.jpg",
+      contentType = "image/jpg", 
+      height = 400
+    ))
+  }, deleteFile = FALSE)
+  output$hcao <- renderImage({
+    return(list(
+      src = "hcao.jpg",
+      contentType = "image/jpg", 
+      height = 400
+    ))
+  }, deleteFile = FALSE)
+  output$vlaw <- renderImage({
+    return(list(
+      src = "vlaw.jpg",
+      contentType = "image/jpg", 
+      height = 400
+    ))
+  }, deleteFile = FALSE)
 }
