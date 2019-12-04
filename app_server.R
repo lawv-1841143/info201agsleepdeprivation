@@ -10,7 +10,7 @@ server <- function(input, output) {
   output$us_timeline <- renderPlot(
     draw_sleep_trend_plot(input$StudiesMethods)
   )
-  output$pie_chart <- renderPlot(
+  output$pie_chart <- renderPlotly(
     draw_pie()
   )
   output$compared.bar <- renderPlotly(

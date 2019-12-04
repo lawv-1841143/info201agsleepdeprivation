@@ -93,7 +93,7 @@ ui <- fluidPage(
         "Multiple Factors",
         titlePanel("Why are we staying up so late?"),
         p("University students answered to a self-report of multiple causes of their sleep deprivation, which are categorized into the below pie chart: "),
-        plotOutput("pie_chart")
+        plotlyOutput("pie_chart")
       ),
       tabPanel(
         "Life Tracking Sample",

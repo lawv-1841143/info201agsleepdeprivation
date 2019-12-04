@@ -152,12 +152,10 @@ new_sleep_info <- info_sleep_df %>%
 
 # draw pie chart for cause factors
 draw_pie <- function() {
-  slices <- cause_factors_df$Percentage
-  label <- cause_factors_df$Factor
-  percentage <- round(slices / sum(slices) * 100)
-  label <- paste0(label," ", percentage)
-  label < - paste0(label, "%")
-  pie(slices, labels = label, col = rainbow(length(label)),
-      main = "Pie Chart of Multiple Factors of Sleep Deprivation")
+  p <- plot_ly(cause_factors_df, labels = ~Factor, values = ~Percentage, type = 'pie') %>% 
+    layout(title = "University Students' self-reported causes of sleep deprivation by factors",
+           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  return(p)
 }
-draw_pie()
+
