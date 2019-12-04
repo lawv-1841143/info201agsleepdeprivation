@@ -34,28 +34,28 @@ server <- function(input, output) {
   output$pvu <- renderImage({
     return(list(
       src = "pvu.jpg",
-      contentType = "image/jpg", 
+      contentType = "image/jpg",
       height = 400
     ))
   }, deleteFile = FALSE)
   output$ychen <- renderImage({
     return(list(
       src = "ychen.jpg",
-      contentType = "image/jpg", 
+      contentType = "image/jpg",
       height = 400
     ))
   }, deleteFile = FALSE)
   output$hcao <- renderImage({
     return(list(
       src = "hcao.jpg",
-      contentType = "image/jpg", 
+      contentType = "image/jpg",
       height = 400
     ))
   }, deleteFile = FALSE)
   output$vlaw <- renderImage({
     return(list(
       src = "vlaw.jpg",
-      contentType = "image/jpg", 
+      contentType = "image/jpg",
       height = 400
     ))
   }, deleteFile = FALSE)

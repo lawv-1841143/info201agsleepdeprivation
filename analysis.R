@@ -106,7 +106,32 @@ draw_bar_graph_gpa_tired <- function() {
     return()
 }
 
-
+# draw brutal reality visualization 1
+draw_br1 <- function() {
+  plot_ly(
+    x = c("Yes", "No")
+    y = c(3.04,3.24)
+    type = "bar"
+  ) %>%
+    layout(
+      Title = "Gender",
+      xaxis = list(title = "Gender"),
+      yaxis = list(title = "SicknessQ", range = c(3.0, 3.3))
+    )
+}
+#draw brutal reality visualization 2
+draw_br2 <- function() {
+  plot_ly(
+    x = c("Yes", "No")
+    y = c(3.04,3.24)
+    type = "bar"
+  ) %>%
+    layout(
+      Title = "Gender",
+      xaxis = list(title = "Enough"),
+      yaxis = list(title = "Tired", range = c(3.0, 3.3))
+    )
+}
 #add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
   activity_time <- life_tracking_df %>%
