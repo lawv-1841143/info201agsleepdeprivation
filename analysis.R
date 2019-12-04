@@ -117,7 +117,7 @@ draw_br1 <- function() {
       Title = "Gender",
       xaxis = list(title = "Gender"),
       yaxis = list(title = "SicknessQ", range = c(3.0, 3.3))
-    )
+    ) %>% 
   return()
 }
 #draw brutal reality visualization 2
@@ -131,7 +131,7 @@ draw_br2 <- function() {
       Title = "Gender",
       xaxis = list(title = "Enough"),
       yaxis = list(title = "Tired", range = c(3.0, 3.3))
-    )
+    ) %>% 
   return()
 }
 

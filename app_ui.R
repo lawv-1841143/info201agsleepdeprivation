@@ -163,7 +163,7 @@ ui <- fluidPage(
         )
       ),
       p("This interactive scatterplot allows user to choose their own interest of age group and multiple outcomes of sleep deprivation. The dataset is retrieved from kaggle where the gathered data about 90 patients in different age groups and measured their physical and psychological health. In our plot, we used 6 different factors: "),
-      p("Age group including old (65 - 75 yo) and young (20 - 30 yo) people. "), 
+      p("Age group including old (65 - 75 years old) and young (20 - 30 years old) people. "), 
       p("Anxiety and depression rating is from the hospital anxiety and depression scale. "), 
       p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "), 
       p("For the younger group of people, they have an average rating of anxiety for about 2.92. Whereas the older age group only have 1.49. And for panic and worry, the younger group is higher for about .5 rating. For health problems, the younger group are worse by .7 rating for self-assessment. This contrast illustrates that there is a weird paradox in health problems. When young people are supposed to be strong and healthy, and older people are more prone to have health issues, the reality is in reverse."),
