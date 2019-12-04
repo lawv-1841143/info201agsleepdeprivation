@@ -181,3 +181,32 @@ draw_pie <- function() {
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   return(p)
 }
+
+calculate_sleep <- function(age, wake_up) {
+  if (age == 1) {
+    amount <- 12
+  }else if (age <= 2) {
+    amount <- 11
+  }else if(age <= 5) {
+    amount <- 10
+  }else if(age <= 12) {
+    amount <- 9
+  }else if(age <= 18) {
+    amount <- 8
+  }else {
+    amount <- 7
+  }
+  suppose_sleep <- wake_up - amount
+  if (suppose_sleep < 0) {
+    suppose_sleep <- 24 + suppose_sleep
+  }
+  statement <- paste0("Your bed time should be before ", suppose_sleep, ":00")
+}
+
+age_statement <- function(age) {
+  statement <- paste0("You are ", age, " years old!")
+}
+
+wake_statement <- function(time) {
+  statement <- paste0("You need to wake up at ", time, ":00")
+}

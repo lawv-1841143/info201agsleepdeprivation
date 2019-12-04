@@ -163,7 +163,7 @@ ui <- fluidPage(
                       min = 1, max = 99,
                       value = 19),
           sliderInput("awake_time", "What time do you need to wake up?",
-                      min = 0.5, max = 23.5,
+                      min = 0, max = 23,
                       value = 8)
         ),
         mainPanel(

@@ -24,5 +24,7 @@ server <- function(input, output) {
   })
   output$years_old <- renderPrint({})
   output$awake <- renderPrint({})
-  output$sleep_time <- renderPrint({})
+  output$sleep_time <- renderPrint({
+    calculate_sleep(input$age_years, input$awake_time)
+  })
 }
