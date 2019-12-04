@@ -10,9 +10,14 @@ ui <- fluidPage(
     tabPanel(
       "Background",
       tags$div(
-        h3("About This Project:"), 
-        p("In today’s society, people sacrifice their sleep time for various reasons: studying for exams, finishing up work or tasks, suffering from anxiety or sleep disorders… etc. No matter what the reasons are, they all contribute to sleep deprivation. Since people not getting enough sleep has become a global phenomenon, it is important to learn about its effect and what sleep deprivation is like in society."), 
-        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."), 
+        h3("About This Project:"),
+        p("In today’s society, people sacrifice their sleep time for various
+          reasons: studying for exams, finishing up work or tasks, suffering
+          from anxiety or sleep disorders… etc. No matter what the reasons are,
+          they all contribute to sleep deprivation. Since people not getting
+          enough sleep has become a global phenomenon, it is important to learn
+          about its effect and what sleep deprivation is like in society."),
+        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."),
         h3("Page Description"),
         p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
         p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
@@ -27,13 +32,13 @@ ui <- fluidPage(
         sidebarLayout(
           sidebarPanel(
             radioButtons("StudiesMethods",
-                         label = h3("Studies' Methods"),
-                         choices = list(
-                           "Actigraphic Study" = 1,
-                           "Polysomnography Study" = 2,
-                           "Both Studies" = 3
-                         ),
-                         selected = 3
+              label = h3("Studies' Methods"),
+              choices = list(
+                "Actigraphic Study" = 1,
+                "Polysomnography Study" = 2,
+                "Both Studies" = 3
+              ),
+              selected = 3
             ),
             hr(),
           ),
@@ -50,8 +55,8 @@ ui <- fluidPage(
         p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."),
         p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"),
         h3("Geographic map of US adults sleeping <7 hours"),
-        plotOutput("us_map_7"), 
-        p("The geographic map illustrates the percentage of people in each state in the U.S that sleep less than 7 hours. As the percentage of people gets higher, the black color goes darker. As shown in the graph, states that have the largest population of having less than 7 hours of sleep are mostly located in the Midwest. On the contrary, western states tend to have fewer people who do not get sufficient sleep."), 
+        plotOutput("us_map_7"),
+        p("The geographic map illustrates the percentage of people in each state in the U.S that sleep less than 7 hours. As the percentage of people gets higher, the black color goes darker. As shown in the graph, states that have the largest population of having less than 7 hours of sleep are mostly located in the Midwest. On the contrary, western states tend to have fewer people who do not get sufficient sleep."),
         p("This graph allows people to have a brief idea of a lack of sleep in each state at one glance. People can easily pick up the states which they want to have a closer look on sleeping issues accordingly to the information presented in the graph.")
       )
     ),
@@ -62,12 +67,12 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           radioButtons("Gender",
-                       label = h3("Gender"),
-                       choices = list(
-                         "Male" = 1,
-                         "Female" = 2
-                       ),
-                       selected = 1
+            label = h3("Gender"),
+            choices = list(
+              "Male" = 1,
+              "Female" = 2
+            ),
+            selected = 1
           ),
           hr()
         ),
@@ -75,36 +80,39 @@ ui <- fluidPage(
           tags$div(
             p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
           ),
-          plotlyOutput('br1')
+          plotlyOutput("br1")
         )
       ),
       tags$hr(),
-           sidebarLayout(
-  sidebarPanel(
-    radioButtons("Sleepdepriv",
-                label = h3("Sleepdepriv"),
-                 choices = list("Enough" = 1,
-                                "Tired" = 2),
-                 selected = 1),
-    hr()
-  ),
-  mainPanel(
-    tags$div(
-      p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
+      sidebarLayout(
+        sidebarPanel(
+          radioButtons("Sleepdepriv",
+            label = h3("Sleepdepriv"),
+            choices = list(
+              "Enough" = 1,
+              "Tired" = 2
+            ),
+            selected = 1
+          ),
+          hr()
+        ),
+        mainPanel(
+          tags$div(
+            p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
+          ),
+          plotlyOutput("br2")
+        )
+      )
     ),
-    plotlyOutput('br2')
-  )
-           )
-),
     navbarMenu(
       "Causes",
       tabPanel(
         "Multiple Factors",
         titlePanel("Why are we staying up so late?"),
         p("University students answered to a self-report of multiple causes of their sleep deprivation, which are categorized into the below pie chart: "),
-        plotlyOutput("pie_chart"), 
-        p("The interactive pie chart demonstrates the most common factors that cause U.S college students stay up so late at night based on the survey. Although there are 14 categories presenting on this chart, it could be organized to 4."), 
-        p("The first one is Dorm/Sleeping environment’s poor quality, including tobacco smoke in sleeping room(7.97%), room’s bad air quality(6.89%), room scents(6.64%), and noise from next door (6.5%). The second category is student’s mental state and feelings, including stress (8.1%), fatigue (6.69%), sadness (6.64%), depression (7.97%), being patient (6.89)and finally, anxiety and tension (6.39%). The third category is student’s physical state, which are pain (7.87%) and strenuous physical activity (6.74%). The fourth category is family issue, making up 7.82 % of the pie chart. (The rest of the 6 percent is reported as other.)"), 
+        plotlyOutput("pie_chart"),
+        p("The interactive pie chart demonstrates the most common factors that cause U.S college students stay up so late at night based on the survey. Although there are 14 categories presenting on this chart, it could be organized to 4."),
+        p("The first one is Dorm/Sleeping environment’s poor quality, including tobacco smoke in sleeping room(7.97%), room’s bad air quality(6.89%), room scents(6.64%), and noise from next door (6.5%). The second category is student’s mental state and feelings, including stress (8.1%), fatigue (6.69%), sadness (6.64%), depression (7.97%), being patient (6.89)and finally, anxiety and tension (6.39%). The third category is student’s physical state, which are pain (7.87%) and strenuous physical activity (6.74%). The fourth category is family issue, making up 7.82 % of the pie chart. (The rest of the 6 percent is reported as other.)"),
         p("Overall, students’ poor sleeping/ resting environment makes up 28 % of the pie chart while student’s mental state takes up to 42.6 %, almost half of the sleep deprived students is affected by their mental states. Physical state occupied 14.61 percent of the chart and family issue has least effect on student sleep, which is only 7.82 percent. ")
       ),
       tabPanel(
@@ -113,64 +121,65 @@ ui <- fluidPage(
         sidebarLayout(
           sidebarPanel(
             selectInput("select.activities",
-                        label = h4("Select an activity to compare with sleep's time:"),
-                        choices = list(
-                          "Cook" = "cook", "Eat" = "eat",
-                          "Math" = "math", "Music" = "music",
-                          "Pause" = "pause", "Prep" = "prep",
-                          "Uni" = "uni", "Meditation" = "meditation",
-                          "Special" = "special", "Work" = "work"
-                        ),
-                        selected = "cook"
+              label = h4("Select an activity to compare with sleep's time:"),
+              choices = list(
+                "Cook" = "cook", "Eat" = "eat",
+                "Math" = "math", "Music" = "music",
+                "Pause" = "pause", "Prep" = "prep",
+                "Uni" = "uni", "Meditation" = "meditation",
+                "Special" = "special", "Work" = "work"
+              ),
+              selected = "cook"
             ),
             hr(),
           ),
           mainPanel(
             plotlyOutput("compared.bar")
           )
-        ), 
-        p("Let's see what people in U.S. do during the day:"), 
-        p(""))
+        ),
+        p("Let's see what people in U.S. do during the day:"),
+        p("")
+      )
     ),
     tabPanel(
       "Impact",
       titlePanel("Risks taken for shortened sleep"),
       sidebarLayout(
         sidebarPanel(
-        radioButtons("age",
-                     label = h3("Age Groups"),
-                     choices = list(
-                       "Young" = "Young",
-                       "Old" = "Old"
-                     ),
-                     selected = "Young"
+          radioButtons("age",
+            label = h3("Age Groups"),
+            choices = list(
+              "Young" = "Young",
+              "Old" = "Old"
+            ),
+            selected = "Young"
+          ),
+          hr(),
+          radioButtons("symptoms",
+            label = h4("Possible Symptoms"),
+            choices = list(
+              "Anxiety" = "anxiety",
+              "Depression" = "depression",
+              "Panic" = "panic",
+              "Worry" = "worry",
+              "Health Problems" = "health"
+            ),
+            selected = "anxiety"
+          )
         ),
-        hr(),
-        radioButtons("symptoms",
-                     label = h4("Possible Symptoms"),
-                     choices = list(
-                       "Anxiety" = "anxiety",
-                       "Depression" = "depression",
-                       "Panic" = "panic",
-                       "Worry" = "worry",
-                       "Health Problems" = "health"
-                     ),
-                     selected = "anxiety"
-        )
-                     ),
         mainPanel(
           plotOutput("sleep_impacts")
         )
       ),
       p("This interactive scatterplot allows user to choose their own interest of age group and multiple outcomes of sleep deprivation. The dataset is retrieved from kaggle where the gathered data about 90 patients in different age groups and measured their physical and psychological health. In our plot, we used 6 different factors: "),
-      p("Age group including old (65 - 75 years old) and young (20 - 30 years old) people. "), 
-      p("Anxiety and depression rating is from the hospital anxiety and depression scale. "), 
-      p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "), 
+      p("Age group including old (65 - 75 years old) and young (20 - 30 years old) people. "),
+      p("Anxiety and depression rating is from the hospital anxiety and depression scale. "),
+      p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "),
       p("For the younger group of people, they have an average rating of anxiety for about 2.92. Whereas the older age group only have 1.49. And for panic and worry, the younger group is higher for about .5 rating. For health problems, the younger group are worse by .7 rating for self-assessment. This contrast illustrates that there is a weird paradox in health problems. When young people are supposed to be strong and healthy, and older people are more prone to have health issues, the reality is in reverse."),
-      p("The lack of sleep is strongly impacting people’s lives. With increasing anxiety and potential health problems. Because this lacking mostly influence mental functioning, and all human activities rely on those 3 pounds little brain, it’s crucial that people should pay more attention to sleeping issues and try to get rid of the malicious effect of not sleeping enough. "), 
+      p("The lack of sleep is strongly impacting people’s lives. With increasing anxiety and potential health problems. Because this lacking mostly influence mental functioning, and all human activities rely on those 3 pounds little brain, it’s crucial that people should pay more attention to sleeping issues and try to get rid of the malicious effect of not sleeping enough. "),
       h3("The relationship between sleep deprivation and student's GPA"),
-      plotlyOutput("sleep_GPA"), 
-      p("This graph demonstrates U.S college students’ average GPA affected by daytime sleepiness. As shown above, students who report not feeling fatigued have a 3.24 GPA, which is 0.2 higher than sleepy students’ 3.04 GPA."), 
+      plotlyOutput("sleep_GPA"),
+      p("This graph demonstrates U.S college students’ average GPA affected by daytime sleepiness. As shown above, students who report not feeling fatigued have a 3.24 GPA, which is 0.2 higher than sleepy students’ 3.04 GPA."),
       p("Academically, the lack of sleep could cause students trouble concentrating in class and performing their knowledge during exams. A lot of students sacrifice their sleep time and stay up late at night to study for exams or do assignments. However, this does not have positive long-term impacts on their academics. Not getting enough sleep at night results in a much lower GPA than students who get at least 7 hours of sleep. While working hard on schoolwork, students should always remember sleep is the biggest priority.")
     ),
     tabPanel(
@@ -186,13 +195,15 @@ ui <- fluidPage(
       ),
       sidebarLayout(
         sidebarPanel(
-          h4("Sleep-time calculation"), 
+          h4("Sleep-time calculation"),
           sliderInput("age_years", "How old are you?",
-                      min = 1, max = 99,
-                      value = 19),
+            min = 1, max = 99,
+            value = 19
+          ),
           sliderInput("awake_time", "What time do you need to wake up?",
-                      min = 0, max = 23,
-                      value = 8)
+            min = 0, max = 23,
+            value = 8
+          )
         ),
         mainPanel(
           textOutput("years_old"),
@@ -226,35 +237,39 @@ ui <- fluidPage(
         "About Us",
         titlePanel("More Information on project members!"),
         fluidRow(
-          column(8,
-                 h3("Phuong Vu"),
-                 p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos.")
-          ), 
-          column(4, imageOutput('pvu', height = 200))
-        ), 
-        hr(), 
+          column(
+            8,
+            h3("Phuong Vu"),
+            p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos.")
+          ),
+          column(4, imageOutput("pvu", height = 200))
+        ),
+        hr(),
         fluidRow(
-          column(8,
-                 h3("Yu-Wen Chen"),
-                 p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
-        ), 
-          column(4, imageOutput('ychen', height = 200))
-        ), 
-        hr(), 
+          column(
+            8,
+            h3("Yu-Wen Chen"),
+            p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
+          ),
+          column(4, imageOutput("ychen", height = 200))
+        ),
+        hr(),
         fluidRow(
-          column(8,
-                 h3("Hanzhi Cao"),
-                 p("Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience."),
-          ), 
-          column(4, imageOutput('hcao', height = 200))
-        ), 
-        hr(), 
+          column(
+            8,
+            h3("Hanzhi Cao"),
+            p("Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience."),
+          ),
+          column(4, imageOutput("hcao", height = 200))
+        ),
+        hr(),
         fluidRow(
-          column(8,
-                 h3("Vivian Law"),
-                 p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture.")
-        ), 
-          column(4, imageOutput('vlaw', height = 200))
+          column(
+            8,
+            h3("Vivian Law"),
+            p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture.")
+          ),
+          column(4, imageOutput("vlaw", height = 200))
         )
       )
     )
