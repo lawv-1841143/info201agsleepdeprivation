@@ -2,7 +2,8 @@ library(shiny)
 library(shinythemes)
 source('analysis.R')
 
-ui <- navbarPage(
+ui <- fluidPage(
+  navbarPage(
   theme = shinytheme("superhero"),
   "Sleep Deprivation",
   tabPanel("Background",
@@ -33,21 +34,13 @@ ui <- navbarPage(
                )
              ),
              h2("Geographic map of US adults sleeping <7 hours"),
-             sidebarLayout(
-               sidebarPanel(
-                 sliderInput("YearRange",
-                             label = h3("Range of interest:"),
-                             min = 2016, max = 2019, value = 2017)
-               ),
-               mainPanel(
-                 plotOutput('us_map_7')
-               )
-             )
-           )),
+             plotOutput('us_map_7')
+           )
+             ),
   tabPanel("Brutal Reality",
            titlePanel("The FACT that we are having less sleep hours can..."),
            p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-           
+           sidebarLayout(
              sidebarPanel(
                radioButtons("Gender",
                                 label = h3("Gender"),
@@ -60,8 +53,13 @@ ui <- navbarPage(
              mainPanel(
                plotOutput('info_sleep_df')
              )
+<<<<<<< HEAD
            p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
            )
+=======
+             ),
+           sidebarLayout(
+>>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
   sidebarPanel(
     radioButtons("Sleepdepriv",
                 label = h3("Sleepdepriv"),
@@ -75,8 +73,9 @@ ui <- navbarPage(
   mainPanel(
     plotOutput('sleep_causes_df')
   )
-)
+           )
 ),
+tabPanel(
   navbarMenu("Causes",
              tabPanel("Multiple Factors",
                       titlePanel("Why are we staying up so late?"),
@@ -87,11 +86,11 @@ ui <- navbarPage(
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("select.activities", label = h3("Select an activity to compare with sleep's time:"), 
-                                      choices = list("Cook" = 'life_tracking_df$cook', "Eat" = 'life_tracking_df$eat',
-                                                     "Math" = 'life_tracking_df$math', "Music" = 'life_tracking_df$music',
-                                                     "Pause" = 'life_tracking_df$pause', "Prep" = 'life_tracking_df$prep',
-                                                     "Uni" = 'life_tracking_df$uni', "Meditatior" = 'life_tracking_df$meditatior',
-                                                     "Special" = 'life_tracking_df$special', "Work" = 'life_tracking_df$work'), 
+                                      choices = list("Cook" = 'cook', "Eat" = 'eat',
+                                                     "Math" = 'math', "Music" = 'music',
+                                                     "Pause" = 'pause', "Prep" = 'prep',
+                                                     "Uni" = 'uni', "Meditatior" = 'meditatior',
+                                                     "Special" = 'special', "Work" = 'work'), 
                                       selected = 10),
                           
                           hr(),
@@ -101,7 +100,11 @@ ui <- navbarPage(
                         )
                       )
                       )
+<<<<<<< HEAD
              
+=======
+  )
+>>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
              ),
   tabPanel("Impact",
            titlePanel("Risks taken for shortened sleep"),
@@ -143,14 +146,15 @@ ui <- navbarPage(
                       tags$div(
                         h2("More Information on project members!"),
                         h3("Phuong Vu"),
-                        p("Phuong Vu is an international student at the University of Washington in his sophomore year, who wants to study Informatics. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and create videos."),
+                        p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
                         h3("Yu-Wen Chen"),
                         p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
                         h3('Hanzhi Cao'),
-                        p('Hanzhi Cao is an international student in UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
+                        p('Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
                         h3("Vivian Law"),
-                        p("Vivian Law is a junior student at University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
+                        p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
                       )
               )
   )
+)
 )
