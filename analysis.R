@@ -16,8 +16,9 @@ life_tracking_df <- read.csv('data/LifeTrackingProjectDataset.csv',
 sleep_causes_df <- read.csv("data/SleepStudyData.csv", stringsAsFactors = F)
 info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
                           stringsAsFactors = F)
+cause_factors_df <- read.csv("data/cause_factors.csv",
+                          stringsAsFactors = F)
 # this .csv file is too large to be uploaded on to Github
-# will ask Andrey about this
 # US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv",
 #                        stringsAsFactors = F)
 # colnames(US_df)[1] <- "Year"
@@ -27,9 +28,11 @@ us_sleep_deprived <- read.csv("data/us_sleep_deprived.csv", stringsAsFactors = F
 statelatlong <- read.csv("data/statelatlong.csv", stringsAsFactors = F)
 
 # reform the dataframe by grouping the sleep time by years
+colnames(polysomnography_studies_df)[1] <- "year"
 polysomnography_grouped_df <- group_by(polysomnography_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time)) %>%
   mutate(type = "Polysomnography Study")
+colnames(actigraphic_studies_df)[1] <- "year"
 actigraphic_grouped_df <- group_by(actigraphic_studies_df, year) %>%
   summarize(sleep_time = mean(sleep_time)) %>%
   mutate(type = "Actigraphic Study")
@@ -99,7 +102,8 @@ draw_bar_graph_gpa_tired <- function() {
       title = "Feeling tired, fatigued, or daytime sleepiness",
       xaxis = list(title = "Answer"),
       yaxis = list(title = "GPA", range = c(3.0, 3.3))
-    )
+    ) %>%
+    return()
 }
 
 # draw brutal reality visualization 1
@@ -166,4 +170,75 @@ plot_ly(
     xaxis = list(title = "Activities"),
     yaxis = list(title = "Time(minute)")
   )
+}
+
+# impacts for sleep deprivation
+new_sleep_info <- info_sleep_df %>%
+  select(AgeGroup, HADS_Anxiety, HADS_Depression, KSQ_Panic, KSQ_Worry, KSQ_HealthProblem)
+new_sleep_info <- new_sleep_info[-13, ]
+colnames(new_sleep_info) <- c("age", "anxiety", "depression", "panic", "worry", "health")
+new_sleep_info$panic <- as.numeric(substring(new_sleep_info$panic, 1, 2))
+new_sleep_info$worry <- as.numeric(substring(new_sleep_info$worry, 1, 2))
+new_sleep_info$health <- as.numeric(substring(new_sleep_info$health, 1, 2))
+
+df <- new_sleep_info[new_sleep_info$age == "Young", ]
+df2 <- new_sleep_info[new_sleep_info$age == "Old", ]
+a <- mean(df$depression)
+a2 <- mean(df2$depression)
+
+# test
+df <- new_sleep_info[new_sleep_info$age == "Young", ]
+df$user <- 1:nrow(df)
+result <- df %>%
+  select(anxiety, user)
+ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
+  geom_hline(aes(yintercept = mean(anxiety), color = anxiety))
+
+# plot scatterplot for impacts
+plot_impacts <- function(age.group, symptoms) {
+  df <- new_sleep_info[new_sleep_info$age == age.group, ]
+  df$user <- 1:nrow(df)
+  result <- df %>%
+    select(symptoms, user)
+  ggplot(result, aes(x=user, y=!!as.name(symptoms), color=!!as.name(symptoms))) + geom_point() +
+    geom_hline(aes(yintercept = mean(!!as.name(symptoms)), color = !!as.name(symptoms)))
+}
+
+# draw pie chart for cause factors
+draw_pie <- function() {
+  p <- plot_ly(cause_factors_df, labels = ~Factor, values = ~Percentage, type = 'pie') %>%
+    layout(title = "University Students' self-reported causes of sleep deprivation by factors",
+           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  return(p)
+}
+
+calculate_sleep <- function(age, wake_up) {
+  if (age == 1) {
+    amount <- 12
+  }else if (age <= 2) {
+    amount <- 11
+  }else if(age <= 5) {
+    amount <- 10
+  }else if(age <= 12) {
+    amount <- 9
+  }else if(age <= 18) {
+    amount <- 8
+  }else {
+    amount <- 7
+  }
+  suppose_sleep <- wake_up - amount
+  if (suppose_sleep < 0) {
+    suppose_sleep <- 24 + suppose_sleep
+  }
+  statement <- paste0("Your bed time should be before ", suppose_sleep, ":00")
+  return(statement)
+}
+
+age_statement <- function(age) {
+  statement <- paste0("You are ", age, " years old!")
+}
+
+wake_statement <- function(time) {
+  statement <- paste0("You need to wake up at ", time, ":00")
 }
