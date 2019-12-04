@@ -2,7 +2,8 @@ library(shiny)
 library(shinythemes)
 source('analysis.R')
 
-ui <- navbarPage(
+ui <- fluidPage(
+  navbarPage(
   theme = shinytheme("superhero"),
   "Sleep Deprivation",
   tabPanel("Background",
@@ -33,21 +34,13 @@ ui <- navbarPage(
                )
              ),
              h2("Geographic map of US adults sleeping <7 hours"),
-             sidebarLayout(
-               sidebarPanel(
-                 sliderInput("YearRange",
-                             label = h3("Range of interest:"),
-                             min = 2016, max = 2019, value = 2017)
-               ),
-               mainPanel(
-                 plotOutput('us_map_7')
-               )
-             )
-           )),
+             plotOutput('us_map_7')
+           )
+             ),
   tabPanel("Brutal Reality",
            titlePanel("The FACT that we are having less sleep hours can..."),
            p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-           
+           sidebarLayout(
              sidebarPanel(
                radioButtons("Gender",
                                 label = h3("Gender"),
@@ -59,7 +52,9 @@ ui <- navbarPage(
              ),
              mainPanel(
                plotOutput('info_sleep_df')
+             )
              ),
+           sidebarLayout(
   sidebarPanel(
     radioButtons("Sleepdepriv",
                 label = h3("Sleepdepriv"),
@@ -72,6 +67,7 @@ ui <- navbarPage(
   mainPanel(
     plotOutput('sleep_causes_df')
   )
+           )
 ),
 tabPanel(
   navbarMenu("Causes",
@@ -150,4 +146,5 @@ tabPanel(
                       )
               )
   )
+)
 )
