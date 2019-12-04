@@ -16,6 +16,9 @@ server <- function(input, output) {
   output$compared.bar <- renderPlotly(
     draw_compare_bar(input$select.activities)
   )
+  output$sleep_impacts <- renderPlot(
+    plot_impacts(input$age, input$symptoms)
+  )
   output$sleep_GPA <- renderPlotly({
     return(draw_bar_graph_gpa_tired())
   })
