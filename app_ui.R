@@ -140,13 +140,13 @@ ui <- navbarPage(
                       tags$div(
                         h2("More Information on project members!"),
                         h3("Phuong Vu"),
-                        p("Phuong Vu is an international student at the University of Washington in his sophomore year, who wants to study Informatics. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and create videos."),
+                        p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
                         h3("Yu-Wen Chen"),
                         p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
                         h3('Hanzhi Cao'),
-                        p('Hanzhi Cao is an international student in UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
+                        p('Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
                         h3("Vivian Law"),
-                        p("Vivian Law is a junior student at University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
+                        p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
                       )
               )
   )
