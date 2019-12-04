@@ -129,8 +129,11 @@ ui <- fluidPage(
             plotlyOutput("compared.bar")
           )
         ), 
-        p("Let's see what people in U.S. do during the day:"), 
-        p(""))
+        h3("Let's see what people in U.S. do during the day:"), 
+        p("The interactive scatter plot compare different activity time with sleeping-time. The x-axis will be all kinds of different activities that can be chosen from the side bar. Y-axis will be the general sleep-time."), 
+        p("There are some interesting ups and downs for some graphs like “cook”, “eat”, “music”, and even “work”. We don’t know the causal or correlational factors of those bumps, which means further research need to be down with that."),
+        p("But for math, it’s pretty clear that generally, if they do more math problems and use more of the brain, the less sleep people are getting. It can be an analog to doing homework as if in students’ life."), 
+        p("In general, all activities have a tendency to go down except for music and meditation. It seems that people have so many things to do in life, studying, social networking, hanging out with friends that they can not even have enough time to sleep."))
     ),
     tabPanel(
       "Impact",
@@ -182,7 +185,7 @@ ui <- fluidPage(
       tags$hr(),
       tags$div(
         h3("Suggested sleep-time according to your age:"),
-        h5("The sleep time calculator allows the user to choose their age and the time they plan to wake up. Then the calculator will calculate the hours of sleep time the user needs based on the information given. "),
+        h5("The sleep time calculator allows the user to choose their age and the time they plan to wake up. Then, the calculator will suggest the time user should go to bed based on the information given."),
       ),
       sidebarLayout(
         sidebarPanel(
@@ -215,7 +218,7 @@ ui <- fluidPage(
           p("[6] Mental Health Guide for College Students. (2019). Retrieved from https://collegestats.org/resources/mental-health-guide/"),
           p("[7] Youngstedt, Shawn D et al. “Has adult sleep duration declined over the last 50+ years?.” Sleep medicine reviews vol. 28 (2016): 69-85. doi:10.1016/j.smrv.2015.08.004"),
           p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
-          p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
+          p("[9] Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
           p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
           p("[11] 2019 American Academy of Sleep Medicine. (n.d.). Make Time 2 Sleep. Retrieved December 4, 2019, from http://sleepeducation.org/healthysleep/Make-Time-2-Sleep-Bedtime-Calculator?fbclid=IwAR0YjgcVl6BzJW1CFOCoVq0s3niDqMt5Ju5NOzePy6Nm1OBt2halh21spGs."),
           p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."),
