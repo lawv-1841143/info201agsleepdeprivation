@@ -51,7 +51,7 @@ ui <- fluidPage(
 
              ),
              mainPanel(
-               plotOutput('info_sleep_df')
+               plotOutput('br1')
              )
 <<<<<<< HEAD
            p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
@@ -71,7 +71,7 @@ ui <- fluidPage(
     
   ),
   mainPanel(
-    plotOutput('sleep_causes_df')
+    plotOutput('br2')
   )
            )
 ),
