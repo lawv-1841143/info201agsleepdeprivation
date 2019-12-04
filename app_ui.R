@@ -106,7 +106,7 @@ ui <- fluidPage(
                 "Cook" = "cook", "Eat" = "eat",
                 "Math" = "math", "Music" = "music",
                 "Pause" = "pause", "Prep" = "prep",
-                "Uni" = "uni", "Meditatior" = "meditatior",
+                "Uni" = "uni", "Meditation" = "meditation",
                 "Special" = "special", "Work" = "work"
               ),
               selected = 10
