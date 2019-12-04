@@ -16,6 +16,8 @@ life_tracking_df <- read.csv('data/LifeTrackingProjectDataset.csv',
 sleep_causes_df <- read.csv("data/SleepStudyData.csv", stringsAsFactors = F)
 info_sleep_df <- read.csv("data/demdata_160225_pseudonymized.csv",
                           stringsAsFactors = F)
+cause_factors_df <- read.csv("data/cause_factors.csv",
+                          stringsAsFactors = F)
 # this .csv file is too large to be uploaded on to Github
 # US_df <- read.csv("data/500_Cities__Local_Data_for_Better_Health__2018_release.csv",
 #                        stringsAsFactors = F)
@@ -147,3 +149,15 @@ plot_ly(
 new_sleep_info <- info_sleep_df %>% 
   group_by(AgeGroup) %>% 
   select(AgeGroup, HADS_Anxiety, HADS_Depression, KSQ_Panic, KSQ_Worry, KSQ_HealthProblem)
+
+# draw pie chart for cause factors
+draw_pie <- function() {
+  slices <- cause_factors_df$Percentage
+  label <- cause_factors_df$Factor
+  percentage <- round(slices / sum(slices) * 100)
+  label <- paste0(label," ", percentage)
+  label < - paste0(label, "%")
+  pie(slices, labels = label, col = rainbow(length(label)),
+      main = "Pie Chart of Multiple Factors of Sleep Deprivation")
+}
+draw_pie()
