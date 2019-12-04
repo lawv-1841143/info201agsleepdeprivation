@@ -169,17 +169,7 @@ plot_impacts <- function(age.group, symptoms) {
   df <- new_sleep_info[new_sleep_info$age == age.group, ]
   df <- df[, symptoms] %>% 
     mutate(1:nrow(df))
-  plot_ly(
-    data = df, 
-    x = nrow(df),
-    y = df[, symptoms],
-    type = "scatter"
-  ) %>%
-    layout(
-      title = "Average sleeping time vs user's choice's time over a month",
-      xaxis = list(title = "Activities"),
-      yaxis = list(title = "Time(minute)")
-    )
+  # plotting left
 }
 
 # draw pie chart for cause factors
