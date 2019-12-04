@@ -99,7 +99,8 @@ draw_bar_graph_gpa_tired <- function() {
       title = "Feeling tired, fatigued, or daytime sleepiness",
       xaxis = list(title = "Answer"),
       yaxis = list(title = "GPA", range = c(3.0, 3.3))
-    )
+    ) %>% 
+    return()
 }
 
 
