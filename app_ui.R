@@ -1,54 +1,85 @@
 library(shiny)
 library(shinythemes)
-source('analysis.R')
+library(plotly)
+source("analysis.R")
 
 ui <- fluidPage(
   navbarPage(
-  theme = shinytheme("superhero"),
-  "Sleep Deprivation",
-  tabPanel("Background",
-           tags$div(
-             p("This project digs deeper into people's daily life and looks especially into the area of sleeping and its related fields. We all know that the most important requirement for daily performance including concentration, calculation and reaction is to have enough rest during the night. The U.S. population, however, is facing a decline in recent decades in sleeping time and quality. In this project, we'll discuss the causes leading to this trend, the hidden impacts and some suggestions to people on how to get a good rest. "),
-             h2("Page Description"),
-             p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
-             p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-             p("The Causes tab is about multiple factors that might contribute to sleep deprivation. We visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. The Life Tracking sub-tab displays an average data of what people do in their daily life. And the user can type in their time use for daily life to fit into the graph and see their difference with U.S. population averages."),
-             p("The Impact tab introduces possible diseases that people might have due to sleep deprivation. A hug contrast can be seen in this tab, and the users can see the reduces risks if they sleep more. An interaction just for fun: test to see how many years you have left if you keep having sleep deprivation.")
-            )
-           ),
-  tabPanel("Trend",
-           tags$div(
-             h2("The current sleeping time trend in U.S. population"),
-             sidebarLayout(
-               sidebarPanel(
-                 radioButtons("StudiesMethods",
-                                    label = h3("Studies' Methods"),
-                                    choices = list("Actigraphic Study" = 1,
-                                                   "Polysomnography Study" = 2,
-                                                   "Both Studies" = 3),
-                                    selected = 3),
-                 hr(),
-               ),
-               mainPanel(
-                 plotOutput('us_timeline')
-               )
-             ),
-             h2("Geographic map of US adults sleeping <7 hours"),
-             plotOutput('us_map_7')
-           )
-             ),
-  tabPanel("Brutal Reality",
-           titlePanel("The FACT that we are having less sleep hours can..."),
-           p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-           sidebarLayout(
-             sidebarPanel(
-               radioButtons("Gender",
-                                label = h3("Gender"),
-                                choices = list("Male" = 1,
-                                               "Female" = 2),
-                                selected = 1),
-               hr(),
+    theme = shinytheme("superhero"),
+    "Sleep Deprivation",
+    tabPanel(
+      "Background",
+      tags$div(
+        h2("About This Project:"), 
+        p("In today’s society, people sacrifice their sleep time for various reasons: studying for exams, finishing up work or tasks, suffering from anxiety or sleep disorders… etc. No matter what the reasons are, they all contribute to sleep deprivation. Since people not getting enough sleep has become a global phenomenon, it is important to learn about its effect and what sleep deprivation is like in society."), 
+        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."), 
+        h2("Page Description"),
+        p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
+        p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
+        p("The Causes tab is about multiple factors that might contribute to sleep deprivation. We visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. The Life Tracking sub-tab displays an average data of what people do in their daily life. And the user can type in their time use for daily life to fit into the graph and see their difference with U.S. population averages."),
+        p("The Impact tab introduces possible diseases that people might have due to sleep deprivation. A hug contrast can be seen in this tab, and the users can see the reduces risks if they sleep more. An interaction just for fun: test to see how many years you have left if you keep having sleep deprivation.")
+      )
+    ),
+    tabPanel(
+      "Trend",
+      tags$div(
+        h2("The current sleeping time trend in U.S. population"),
+        sidebarLayout(
+          sidebarPanel(
+            radioButtons("StudiesMethods",
+                         label = h3("Studies' Methods"),
+                         choices = list(
+                           "Actigraphic Study" = 1,
+                           "Polysomnography Study" = 2,
+                           "Both Studies" = 3
+                         ),
+                         selected = 3
+            ),
+            hr(),
+          ),
+          mainPanel(
+            plotOutput("us_timeline")
+          )
+        ),
+        p("This graph represents the average sleep time in minutes for adults (18-39) in the U.S from 2000 to 2015. The study methods include *Actigraphic Study and *Polysomnography Study."),
+        p("For Actigraphic Study, the trend experiences a drastic decline from the year 2000 (the highest point) to 2002, then it turns to a small and steady decline until 2006. Starting from 2006, the trend grows constantly for three years then keeps decreasing to its lowest point at the end."),
+        p("For Polysomnography Study, the trend remains steady from the beginning year, 2000, to 2006. It increases by little for half of a year then goes down constantly with small fluctuation. Starting from 2009, when the trend reaches its lowest point, it goes upward slowly until the end."),
+        p("Note:"),
+        p("* Actigraphic Study: Actigraphy is a non-invasive technique used to assess cycles of activity and rest over several days to several weeks."),
+        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/s/sleep-disorder-tests/procedures/actigraphy.html)"),
+        p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."),
+        p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"),
+        h2("Geographic map of US adults sleeping <7 hours"),
+        plotOutput("us_map_7"), 
+        p("The geographic map illustrates the percentage of people in each state in the U.S that sleep less than 7 hours. As the percentage of people gets higher, the black color goes darker. As shown in the graph, states that have the largest population of having less than 7 hours of sleep are mostly located in the Midwest. On the contrary, western states tend to have fewer people who do not get sufficient sleep."), 
+        p("This graph allows people to have a brief idea of a lack of sleep in each state at one glance. People can easily pick up the states which they want to have a closer look on sleeping issues accordingly to the information presented in the graph.")
+      )
+    ),
+    tabPanel(
+      "Brutal Reality",
+      titlePanel("The FACT that we are having less sleep hours can..."),
+      p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
+      sidebarLayout(
+        sidebarPanel(
+          radioButtons("Gender",
+                       label = h3("Gender"),
+                       choices = list(
+                         "Male" = 1,
+                         "Female" = 2
+                       ),
+                       selected = 1
+          ),
+          hr()
+        ),
+        mainPanel(
+          tags$div(
+            p("Separating by gender allows us to see how both are affected by gender deprivation. Since women and men are so different, the effects can also be different. We will be investigating how men and women feel after a not good night sleep. ")
+          ),
+          plotOutput("info_sleep_df")
+        )
+      ),
 
+<<<<<<< HEAD
              ),
              mainPanel(
                plotOutput('br1')
@@ -94,67 +125,167 @@ tabPanel(
                                       selected = 10),
                           
                           hr(),
-                        ),
-                        mainPanel(
-                          plotOutput('compared.bar')
-                        )
-                      )
-                      )
-<<<<<<< HEAD
-             
 =======
+      sidebarLayout(
+        sidebarPanel(
+          radioButtons("Sleepdepriv",
+                       label = h3("Sleepdepriv"),
+                       choices = list(
+                         "Enough" = 1,
+                         "Tired" = 2
+                       ),
+                       selected = 1
+          ),
+          hr(),
+        ),
+        mainPanel(
+          tags$div(
+            p("Americans are not getting enough sleep. It also depends how each person perceives what enough sleep is. Many people are tired during the day and cannot focus on their daily activities. By graphing enough and tired, we can see the affects of sleep deprivation.")
+          ),
+          plotOutput("sleep_causes_df")
+        )
+      )
+    ),
+    navbarMenu(
+      "Causes",
+      tabPanel(
+        "Multiple Factors",
+        titlePanel("Why are we staying up so late?"),
+        p("University students answered to a self-report of multiple causes of their sleep deprivation, which are categorized into the below pie chart: "),
+        plotlyOutput("pie_chart"), 
+        p("The interactive pie chart demonstrates the most common factors that cause U.S college students stay up so late at night based on the survey. Although there are 14 categories presenting on this chart, it could be organized to 4."), 
+        p("The first one is Dorm/Sleeping environment’s poor quality, including tobacco smoke in sleeping room(7.97%), room’s bad air quality(6.89%), room scents(6.64%), and noise from next door (6.5%). The second category is student’s mental state and feelings, including stress (8.1%), fatigue (6.69%), sadness (6.64%), depression (7.97%), being patient (6.89)and finally, anxiety and tension (6.39%). The third category is student’s physical state, which are pain (7.87%) and strenuous physical activity (6.74%). The fourth category is family issue, making up 7.82 % of the pie chart. (The rest of the 6 percent is reported as other.)"), 
+        p("Overall, students’ poor sleeping/ resting environment makes up 28 % of the pie chart while student’s mental state takes up to 42.6 %, almost half of the sleep deprived students is affected by their mental states. Physical state occupied 14.61 percent of the chart and family issue has least effect on student sleep, which is only 7.82 percent. ")
+      ),
+      tabPanel(
+        "Life Tracking Sample",
+        titlePanel("Let's see what people in U.S. do during the day"),
+        sidebarLayout(
+          sidebarPanel(
+            selectInput("select.activities",
+                        label = h3("Select an activity to compare with sleep's time:"),
+                        choices = list(
+                          "Cook" = "cook", "Eat" = "eat",
+                          "Math" = "math", "Music" = "music",
+                          "Pause" = "pause", "Prep" = "prep",
+                          "Uni" = "uni", "Meditation" = "meditation",
+                          "Special" = "special", "Work" = "work"
+>>>>>>> ba9252de77ebefff5ecdefa3ecdf5f38e0e9328f
+                        ),
+                        selected = 10
+            ),
+            hr(),
+          ),
+          mainPanel(
+            plotlyOutput("compared.bar")
+          )
+        ), 
+        p("Let's see what people in U.S. do during the day:"), 
+        p("The graph allows people to look closely at the time spent on each activity and compare it to their sleeping time. The range of activity includes housework, schoolwork, leisure activities, and full-time work. People can easily compare and see how people manage their time for different tasks and sleeping.")
+      )
+    ),
+    tabPanel(
+      "Impact",
+      titlePanel("Risks taken for shortened sleep"),
+      sidebarLayout(
+        sidebarPanel(
+        radioButtons("age",
+                     label = h3("Age Groups"),
+                     choices = list(
+                       "Young" = "Young",
+                       "Old" = "Old"
+                     ),
+                     selected = "Young"
+        ),
+        hr(),
+        radioButtons("symptoms",
+                     label = h3("Possible Symptoms"),
+                     choices = list(
+                       "Anxiety" = "anxiety",
+                       "Depression" = "depression",
+                       "Panic" = "panic",
+                       "Worry" = "worry",
+                       "Health Problems" = "health"
+                     ),
+                     selected = "anxiety"
+        )
+                     ),
+        mainPanel(
+          plotOutput("sleep_impacts")
+        )
+      ),
+      p("This interactive scatterplot allows user to choose their own interest of age group and multiple outcomes of sleep deprivation. The dataset is retrieved from kaggle where the gathered data about 90 patients in different age groups and measured their physical and psychological health. In our plot, we used 6 different factors: "),
+      p("Age group including old (65 - 75 yo) and young (20 - 30 yo) people. "), 
+      p("Anxiety and depression rating is from the hospital anxiety and depression scale. "), 
+      p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "), 
+      p("For the younger group of people, they have an average rating of anxiety for about 2.92. Whereas the older age group only have 1.49. And for panic and worry, the younger group is higher for about .5 rating. For health problems, the younger group are worse by .7 rating for self-assessment. This contrast illustrates that there is a weird paradox in health problems. When young people are supposed to be strong and healthy, and older people are more prone to have health issues, the reality is in reverse."),
+      p("The lack of sleep is strongly impacting people’s lives. With increasing anxiety and potential health problems. Because this lacking mostly influence mental functioning, and all human activities rely on those 3 pounds little brain, it’s crucial that people should pay more attention to sleeping issues and try to get rid of the malicious effect of not sleeping enough. "), 
+      h2("The relationship between sleep deprivation and student's GPA"),
+      plotlyOutput("sleep_GPA"), 
+      p("This graph demonstrates U.S college students’ average GPA affected by daytime sleepiness. As shown above, students who report not feeling fatigued have a 3.24 GPA, which is 0.2 higher than sleepy students’ 3.04 GPA."), 
+      p("Academically, the lack of sleep could cause students trouble concentrating in class and performing their knowledge during exams. A lot of students sacrifice their sleep time and stay up late at night to study for exams or do assignments. However, this does not have positive long-term impacts on their academics. Not getting enough sleep at night results in a much lower GPA than students who get at least 7 hours of sleep. While working hard on schoolwork, students should always remember sleep is the biggest priority.")
+    ),
+    tabPanel(
+      "Conclusion",
+      tags$div(
+        h2("Conclusion"),
+        p("The strength of our project is that our resources for datasets are from authentic organizations, including American Academy of Sleep Medicine (AASM), National Alliance on Mental Illness (NAMI), and the Centers for Disease Control and Prevention (CDC). By using these credible sources, our group ensures that the information presented in our project is reliable. On the other hand, one of the weaknesses of our project is the narrow age range we covered. We only targeted people aged from 18 to 39, which makes up about 26.3 percent of the U.S population. he project could be more applicable to more users. The main lesson our team learned from this project is, the sleeping trend in the U.S in recent years is getting worse. We found out that the lack of sleep could affect not only students' academic performance but also human health. In the future, people could improve the project by extending the age group and provide suggestions to improve people’s sleeping time and sleeping quality. Our team would also like to look deeper into the sleeping trend in different countries other than the U.S to make a comparison, as well as how foreign governments approach sleeping issues.")
+      ),
+      sidebarLayout(
+        sidebarPanel(
+          sliderInput("age_years", "How old are you?",
+                      min = 1, max = 99,
+                      value = 19),
+          sliderInput("awake_time", "What time do you need to wake up?",
+                      min = 0, max = 23,
+                      value = 8)
+        ),
+        mainPanel(
+          textOutput("years_old"),
+          textOutput("awake"),
+          textOutput("sleep_time")
+        )
+      )
+    ),
+    navbarMenu(
+      "About",
+      tabPanel(
+        "About Tech",
+        titlePanel("Give credit to all the amazing sources!"),
+        tags$div(
+          p("[1] Cunningham, J. (2019). College students aren’t getting nearly enough sleep. Retrieved from http://sleepeducation.org/news/2019/07/18/college-students-are-not-getting-nearly-enough-sleep"),
+          p("[2] Feraco, F. (2018). Sleep Deprivation. Retrieved from https://www.kaggle.com/feraco/sleep-deprivation#demdata_160225_pseudonymized.csv"),
+          p("[3] Fusion 360. (2014). Sleepless Nights. Retrieved from https://visual.ly/community/infographic/health/sleepless-nights"),
+          p("[4] Healthguru. (2012). Need More Sleep? The Facts On Sleeping Disorders. Retrieved from https://visual.ly/community/infographic/health/need-more-sleep-facts-sleeping-disorders"),
+          p("[5] Lomuscio, M. (2019). Sleep Study. Retrieved from https://www.kaggle.com/mlomuscio/sleepstudypilot"),
+          p("[6] Mental Health Guide for College Students. (2019). Retrieved from https://collegestats.org/resources/mental-health-guide/"),
+          p("[7] Youngstedt, Shawn D et al. “Has adult sleep duration declined over the last 50+ years?.” Sleep medicine reviews vol. 28 (2016): 69-85. doi:10.1016/j.smrv.2015.08.004"),
+          p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
+          p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
+          p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
+          p(""),
+          p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."),
+          h4("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :) ")
+        )
+      ),
+      tabPanel(
+        "About Us",
+        titlePanel("More Information on project members!"),
+        tags$div(
+          img(src = 'pvu.jpg'),
+          h3("Phuong Vu"),
+          p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
+          tags$img(src = 'ychen.jpg'),
+          h3("Yu-Wen Chen"),
+          p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
+          tags$img(src = 'hcao.jpg'),
+          h3("Hanzhi Cao"),
+          p("Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience."),
+          tags$img(src = 'vlaw.jpg'),
+          h3("Vivian Law"),
+          p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture.")
+        )
+      )
+    )
   )
->>>>>>> 8e3a7f87758aff8b6ae08a4dabe315c051690c57
-             ),
-  tabPanel("Impact",
-           titlePanel("Risks taken for shortened sleep"),
-           sidebarLayout(
-             sidebarPanel(
-               p("SOMETHING")
-             ), 
-             mainPanel(
-               plotOutput('sleep_GPA')
-             )
-           )
-  ), 
-  tabPanel("Conclusion",
-           tags$div(
-             h2("Conclusion"), 
-             p("The strength of our project is that our resources for datasets are from authentic organizations, including American Academy of Sleep Medicine (AASM), National Alliance on Mental Illness (NAMI), and the Centers for Disease Control and Prevention (CDC). By using these credible sources, our group ensures that the information presented in our project is reliable. On the other hand, one of the weaknesses of our project is the narrow age range we covered. We only targeted people aged from 18 to 39, which makes up about 26.3 percent of the U.S population. he project could be more applicable to more users. The main lesson our team learned from this project is, the sleeping trend in the U.S in recent years is getting worse. We found out that the lack of sleep could affect not only students' academic performance but also human health. In the future, people could improve the project by extending the age group and provide suggestions to improve people’s sleeping time and sleeping quality. Our team would also like to look deeper into the sleeping trend in different countries other than the U.S to make a comparison, as well as how foreign governments approach sleeping issues.")
-           )
-           ),
-  navbarMenu("About",
-             tabPanel("About Tech",
-                      #titlePanel("Give credit to all the amazing sources!")
-                      tags$div(
-                        h2("Give credit to all the amazing sources!"), 
-                        p("[1] Cunningham, J. (2019). College students aren’t getting nearly enough sleep. Retrieved from http://sleepeducation.org/news/2019/07/18/college-students-are-not-getting-nearly-enough-sleep"),
-                        p("[2] Feraco, F. (2018). Sleep Deprivation. Retrieved from https://www.kaggle.com/feraco/sleep-deprivation#demdata_160225_pseudonymized.csv"),
-                        p("[3] Fusion 360. (2014). Sleepless Nights. Retrieved from https://visual.ly/community/infographic/health/sleepless-nights"),
-                        p("[4] Healthguru. (2012). Need More Sleep? The Facts On Sleeping Disorders. Retrieved from https://visual.ly/community/infographic/health/need-more-sleep-facts-sleeping-disorders"), 
-                        p("[5] Lomuscio, M. (2019). Sleep Study. Retrieved from https://www.kaggle.com/mlomuscio/sleepstudypilot"),
-                        p("[6] Mental Health Guide for College Students. (2019). Retrieved from https://collegestats.org/resources/mental-health-guide/"),
-                        p("[7] Youngstedt, Shawn D et al. “Has adult sleep duration declined over the last 50+ years?.” Sleep medicine reviews vol. 28 (2016): 69-85. doi:10.1016/j.smrv.2015.08.004"),
-                        p("[8] “500 Cities: Local Data for Better Health, 2018 Release.” Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, https://chronicdata.cdc.gov/500-Cities/500-Cities-Local-Data-for-Better-Health-2018-relea/6vp6-wxuq"),
-                        p("[9]Monideepa B. Becerra, Brittny S. Bol, Rochelle Granados & Christina Hassija (2018) Sleepless in school: The role of social determinants of sleep health among college students, Journal of American College Health, DOI: 10.1080/07448481.2018.1538148"),
-                        p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
-                        h4("And a special thanks to Andrey Butenko, AKA our wonderful TA who helped us a lot!! :)")
-                      )
-              ),
-             tabPanel("About Us",
-                      # titlePanel("More Information on project members!"),
-                      tags$div(
-                        h2("More Information on project members!"),
-                        h3("Phuong Vu"),
-                        p("Phuong Vu is an international student at the University of Washington who wants to study Informatics, and this is his second year at the UW. He enjoys writing code that would solve real-life tasks. During his free time, he loves traveling to new places to take artistic photos and creating videos."),
-                        h3("Yu-Wen Chen"),
-                        p("Yu-Wen Chen is currently a Freshman at the University of Washington from Taoyuan, Taiwan. She enjoys creative problem solving and figuring things out with her team. Outside of  the classroom, she loves spending time doing creative writing and reading Asian literature. Most importantly, she thinks her dog May-May is the cutest dog in the universe."),
-                        h3('Hanzhi Cao'),
-                        p('Hanzhi Cao is an international student at the UW studying Psychology in her senior year. On one hand she loves psychology and would love to know more about the mysterious human kind. On the other hand, she is also into data field that people are generating data every day every second. She believes that efficiency is EVERYTHING, so her ultimate goal of life is to find a better way to improve human life experience.'),
-                        h3("Vivian Law"),
-                        p("Vivian Law is a junior student at the University of Washington. She is in the Early Childhood Family Studies major. She enjoys photography and trying different foods. She has a passion for children and for technology. She values her Taiwanese and Cantonese culture. ")
-                      )
-              )
-  )
-)
 )
