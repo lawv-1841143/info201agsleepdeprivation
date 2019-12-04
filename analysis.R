@@ -102,9 +102,12 @@ plot_ly(
 
 #add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
+  print(activity)
+  print(life_tracking_df)
   activity_time <- life_tracking_df %>%
-    mutate(activity = paste0(activity, ":00")) %>%
+    mutate(activity = paste0(!!as.name(activity), ":00")) %>%
     pull(activity)
+  print(activity_time)
   activity_format <- times(activity_time)
   activity_hour <- hours(activity_format)
   activity_minute <- minutes(activity_format)
@@ -114,7 +117,7 @@ convert_to_min <- function(activity) {
 }
 
 # add a column of total sleep time in minute
-life_tracking_df <- convert_to_min(life_tracking_df$sleep) %>%
+life_tracking_df <- convert_to_min("sleep") %>%
   rename(sleep_time = new_col)
 
 # a function for bar graph of given sleep time and input time
