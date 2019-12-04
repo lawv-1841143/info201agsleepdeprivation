@@ -166,8 +166,16 @@ ui <- fluidPage(
           plotOutput("sleep_impacts")
         )
       ),
+      p("This interactive scatterplot allows user to choose their own interest of age group and multiple outcomes of sleep deprivation. The dataset is retrieved from kaggle where the gathered data about 90 patients in different age groups and measured their physical and psychological health. In our plot, we used 6 different factors: "),
+      p("Age group including old (65 - 75 yo) and young (20 - 30 yo) people. "), 
+      p("Anxiety and depression rating is from the hospital anxiety and depression scale. "), 
+      p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "), 
+      p("For the younger group of people, they have an average rating of anxiety for about 2.92. Whereas the older age group only have 1.49. And for panic and worry, the younger group is higher for about .5 rating. For health problems, the younger group are worse by .7 rating for self-assessment. This contrast illustrates that there is a weird paradox in health problems. When young people are supposed to be strong and healthy, and older people are more prone to have health issues, the reality is in reverse."),
+      p("The lack of sleep is strongly impacting people’s lives. With increasing anxiety and potential health problems. Because this lacking mostly influence mental functioning, and all human activities rely on those 3 pounds little brain, it’s crucial that people should pay more attention to sleeping issues and try to get rid of the malicious effect of not sleeping enough. "), 
       h2("The relationship between sleep deprivation and student's GPA"),
-      plotlyOutput("sleep_GPA")
+      plotlyOutput("sleep_GPA"), 
+      p("This graph demonstrates U.S college students’ average GPA affected by daytime sleepiness. As shown above, students who report not feeling fatigued have a 3.24 GPA, which is 0.2 higher than sleepy students’ 3.04 GPA."), 
+      p("Academically, the lack of sleep could cause students trouble concentrating in class and performing their knowledge during exams. A lot of students sacrifice their sleep time and stay up late at night to study for exams or do assignments. However, this does not have positive long-term impacts on their academics. Not getting enough sleep at night results in a much lower GPA than students who get at least 7 hours of sleep. While working hard on schoolwork, students should always remember sleep is the biggest priority.")
     ),
     tabPanel(
       "Conclusion",
