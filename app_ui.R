@@ -10,10 +10,10 @@ ui <- fluidPage(
     tabPanel(
       "Background",
       tags$div(
-        h2("About This Project:"), 
+        h3("About This Project:"), 
         p("In today’s society, people sacrifice their sleep time for various reasons: studying for exams, finishing up work or tasks, suffering from anxiety or sleep disorders… etc. No matter what the reasons are, they all contribute to sleep deprivation. Since people not getting enough sleep has become a global phenomenon, it is important to learn about its effect and what sleep deprivation is like in society."), 
         p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."), 
-        h2("Page Description"),
+        h3("Page Description"),
         p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
         p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
         p("The Causes tab is about multiple factors that might contribute to sleep deprivation. We visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. The Life Tracking sub-tab displays an average data of what people do in their daily life. And the user can type in their time use for daily life to fit into the graph and see their difference with U.S. population averages."),
@@ -23,7 +23,7 @@ ui <- fluidPage(
     tabPanel(
       "Trend",
       tags$div(
-        h2("The current sleeping time trend in U.S. population"),
+        h3("The current sleeping time trend in U.S. population"),
         sidebarLayout(
           sidebarPanel(
             radioButtons("StudiesMethods",
@@ -49,7 +49,7 @@ ui <- fluidPage(
         p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/s/sleep-disorder-tests/procedures/actigraphy.html)"),
         p("* Polysomnography Study: A polysomnogram continuously records brain waves during sleep, as well as a number of nerve and muscle functions during nighttime sleep."),
         p("(2019, Stanford Health Care. https://stanfordhealthcare.org/medical-tests/p/polysomnogram.html)"),
-        h2("Geographic map of US adults sleeping <7 hours"),
+        h3("Geographic map of US adults sleeping <7 hours"),
         plotOutput("us_map_7"), 
         p("The geographic map illustrates the percentage of people in each state in the U.S that sleep less than 7 hours. As the percentage of people gets higher, the black color goes darker. As shown in the graph, states that have the largest population of having less than 7 hours of sleep are mostly located in the Midwest. On the contrary, western states tend to have fewer people who do not get sufficient sleep."), 
         p("This graph allows people to have a brief idea of a lack of sleep in each state at one glance. People can easily pick up the states which they want to have a closer look on sleeping issues accordingly to the information presented in the graph.")
@@ -118,7 +118,7 @@ ui <- fluidPage(
         sidebarLayout(
           sidebarPanel(
             selectInput("select.activities",
-                        label = h3("Select an activity to compare with sleep's time:"),
+                        label = h4("Select an activity to compare with sleep's time:"),
                         choices = list(
                           "Cook" = "cook", "Eat" = "eat",
                           "Math" = "math", "Music" = "music",
@@ -126,7 +126,7 @@ ui <- fluidPage(
                           "Uni" = "uni", "Meditation" = "meditation",
                           "Special" = "special", "Work" = "work"
                         ),
-                        selected = 10
+                        selected = "cook"
             ),
             hr(),
           ),
@@ -153,7 +153,7 @@ ui <- fluidPage(
         ),
         hr(),
         radioButtons("symptoms",
-                     label = h3("Possible Symptoms"),
+                     label = h4("Possible Symptoms"),
                      choices = list(
                        "Anxiety" = "anxiety",
                        "Depression" = "depression",
@@ -174,7 +174,7 @@ ui <- fluidPage(
       p("Worry, panic, and health problems are from Karolinska Sleep Questionnaire. "), 
       p("For the younger group of people, they have an average rating of anxiety for about 2.92. Whereas the older age group only have 1.49. And for panic and worry, the younger group is higher for about .5 rating. For health problems, the younger group are worse by .7 rating for self-assessment. This contrast illustrates that there is a weird paradox in health problems. When young people are supposed to be strong and healthy, and older people are more prone to have health issues, the reality is in reverse."),
       p("The lack of sleep is strongly impacting people’s lives. With increasing anxiety and potential health problems. Because this lacking mostly influence mental functioning, and all human activities rely on those 3 pounds little brain, it’s crucial that people should pay more attention to sleeping issues and try to get rid of the malicious effect of not sleeping enough. "), 
-      h2("The relationship between sleep deprivation and student's GPA"),
+      h3("The relationship between sleep deprivation and student's GPA"),
       plotlyOutput("sleep_GPA"), 
       p("This graph demonstrates U.S college students’ average GPA affected by daytime sleepiness. As shown above, students who report not feeling fatigued have a 3.24 GPA, which is 0.2 higher than sleepy students’ 3.04 GPA."), 
       p("Academically, the lack of sleep could cause students trouble concentrating in class and performing their knowledge during exams. A lot of students sacrifice their sleep time and stay up late at night to study for exams or do assignments. However, this does not have positive long-term impacts on their academics. Not getting enough sleep at night results in a much lower GPA than students who get at least 7 hours of sleep. While working hard on schoolwork, students should always remember sleep is the biggest priority.")
@@ -182,17 +182,17 @@ ui <- fluidPage(
     tabPanel(
       "Conclusion",
       tags$div(
-        h2("Conclusion"),
+        h3("Conclusion"),
         p("The strength of our project is that our resources for datasets are from authentic organizations, including American Academy of Sleep Medicine (AASM), National Alliance on Mental Illness (NAMI), and the Centers for Disease Control and Prevention (CDC). By using these credible sources, our group ensures that the information presented in our project is reliable. On the other hand, one of the weaknesses of our project is the narrow age range we covered. We only targeted people aged from 18 to 39, which makes up about 26.3 percent of the U.S population. he project could be more applicable to more users. The main lesson our team learned from this project is, the sleeping trend in the U.S in recent years is getting worse. We found out that the lack of sleep could affect not only students' academic performance but also human health. In the future, people could improve the project by extending the age group and provide suggestions to improve people’s sleeping time and sleeping quality. Our team would also like to look deeper into the sleeping trend in different countries other than the U.S to make a comparison, as well as how foreign governments approach sleeping issues.")
       ),
       tags$hr(),
       tags$div(
-        h2("Suggested sleep-time according to your age:"),
-        h4("The sleep time calculator allows the user to choose their age and the time they plan to wake up. Then the calculator will calculate the hours of sleep time the user needs based on the information given. "),
+        h3("Suggested sleep-time according to your age:"),
+        h5("The sleep time calculator allows the user to choose their age and the time they plan to wake up. Then the calculator will calculate the hours of sleep time the user needs based on the information given. "),
       ),
       sidebarLayout(
         sidebarPanel(
-          h3("Sleep-time calculation"), 
+          h4("Sleep-time calculation"), 
           sliderInput("age_years", "How old are you?",
                       min = 1, max = 99,
                       value = 19),
@@ -225,7 +225,7 @@ ui <- fluidPage(
           p("[10] Life tracking project dataset. Retrieved from: https://www.kaggle.com/maxschmidt94/life-tracking-project-dataset#life_total_data.csv"),
           p("[11] 2019 American Academy of Sleep Medicine. (n.d.). Make Time 2 Sleep. Retrieved December 4, 2019, from http://sleepeducation.org/healthysleep/Make-Time-2-Sleep-Bedtime-Calculator?fbclid=IwAR0YjgcVl6BzJW1CFOCoVq0s3niDqMt5Ju5NOzePy6Nm1OBt2halh21spGs."),
           p("[12] Altun, I., Cınar, N., & Dede, C. (2012). The contributing factors to poor sleep experiences in according to the university students: A cross-sectional study. Journal of research in medical sciences : the official journal of Isfahan University of Medical Sciences, 17(6), 557–561."),
-          h4("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :) ")
+          h5("And a special thanks to Andrey Butenko, our wonderful TA who helped us a lot through this course and on this project :) ")
         )
       ),
       tabPanel(

@@ -14,7 +14,7 @@ server <- function(input, output) {
     draw_pie()
   )
   output$compared.bar <- renderPlotly(
-    draw_compare_bar(input$select.activities)
+    draw_compare_line(input$select.activities)
   )
   output$sleep_impacts <- renderPlot(
     plot_impacts(input$age, input$symptoms)

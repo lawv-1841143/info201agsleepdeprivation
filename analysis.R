@@ -132,7 +132,8 @@ draw_bar_graph_gpa_tired <- function() {
 #       yaxis = list(title = "Tired", range = c(3.0, 3.3))
 #     )
 # }
-#add a coloumn of total 'activity' time in minute
+
+# add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
   activity_time <- life_tracking_df %>%
     mutate(activity = paste0(!!as.name(activity), ":00")) %>%
@@ -149,15 +150,20 @@ convert_to_min <- function(activity) {
 life_tracking_df <- convert_to_min("sleep") %>%
   rename(sleep_time = new_col)
 
+# test test
+compare_table <- convert_to_min("cook") %>%
+  select(sleep_time, new_col)
+colnames(compare_table) <- c("sleep-time", "cook")
+ggplot(compare_table, aes(x=cook, y=!!as.name("sleep-time"))) + geom_point() + geom_smooth()
+
 # a function for bar graph of given sleep time and input time
-draw_compare_bar <- function(other) {
+draw_compare_line <- function(other) {
   compare_table <- convert_to_min(other) %>%
-    select(date, sleep_time, new_col)
-#  sleep_mean <- mean(compare_table$sleep_time, na.rm = T)
-#  other_mean <- mean(compare_table$new_col, na.rm = T)
-
-#draw plot
-
+    select(sleep_time, new_col)
+  colnames(compare_table) <- c("sleep_time", other)
+  ggplot(compare_table, aes(x=!!as.name(other), y=!!as.name("sleep_time"))) +
+    geom_point() +
+    geom_smooth()
 }
 
 # impacts for sleep deprivation
@@ -168,11 +174,6 @@ colnames(new_sleep_info) <- c("age", "anxiety", "depression", "panic", "worry", 
 new_sleep_info$panic <- as.numeric(substring(new_sleep_info$panic, 1, 2))
 new_sleep_info$worry <- as.numeric(substring(new_sleep_info$worry, 1, 2))
 new_sleep_info$health <- as.numeric(substring(new_sleep_info$health, 1, 2))
-
-df <- new_sleep_info[new_sleep_info$age == "Young", ]
-df2 <- new_sleep_info[new_sleep_info$age == "Old", ]
-a <- mean(df$depression)
-a2 <- mean(df2$depression)
 
 # test
 df <- new_sleep_info[new_sleep_info$age == "Young", ]
