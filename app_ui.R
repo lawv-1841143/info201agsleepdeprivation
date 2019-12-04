@@ -140,7 +140,7 @@ ui <- fluidPage(
                        "Depression" = "depression", 
                        "Panic" = "panic", 
                        "Worry" = "worry", 
-                       "Health" = "health"
+                       "Health Problems" = "health"
                      ),
                      selected = "axiety"
         ),
