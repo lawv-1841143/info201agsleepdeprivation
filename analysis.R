@@ -149,7 +149,6 @@ plot_ly(
 
 # impacts for sleep deprivation
 new_sleep_info <- info_sleep_df %>%
-  group_by(AgeGroup) %>%
   select(AgeGroup, HADS_Anxiety, HADS_Depression, KSQ_Panic, KSQ_Worry, KSQ_HealthProblem)
 new_sleep_info <- new_sleep_info[-13, ]
 colnames(new_sleep_info) <- c("age", "anxiety", "depression", "panic", "worry", "health")
@@ -157,20 +156,27 @@ new_sleep_info$panic <- as.numeric(substring(new_sleep_info$panic, 1, 2))
 new_sleep_info$worry <- as.numeric(substring(new_sleep_info$worry, 1, 2))
 new_sleep_info$health <- as.numeric(substring(new_sleep_info$health, 1, 2))
 
+df <- new_sleep_info[new_sleep_info$age == "Young", ]
+df2 <- new_sleep_info[new_sleep_info$age == "Old", ]
+a <- mean(df$depression)
+a2 <- mean(df2$depression)
+
 # test
 df <- new_sleep_info[new_sleep_info$age == "Young", ]
-result <- df[, 2] %>%
-  mutate(1:nrow(df))
-colnames(result) <- c("symptom", "user")
-ggplot(result, aes(x=user, y=symptom, color=symptom)) + geom_point()
+df$user <- 1:nrow(df)
+result <- df %>% 
+  select(anxiety, user) 
+ggplot(result, aes(x=user, y=anxiety, color=anxiety)) + geom_point() +
+  geom_hline(aes(yintercept = mean(anxiety), color = anxiety))
 
 # plot scatterplot for impacts
 plot_impacts <- function(age.group, symptoms) {
   df <- new_sleep_info[new_sleep_info$age == age.group, ]
-  df <- df[, symptoms] %>%
-    mutate(1:nrow(df))
-  colnames(result) <- c("symptom", "user")
-  ggplot(result, aes(x=user, y=symptom, color=symptom)) + geom_point()
+  df$user <- 1:nrow(df)
+  result <- df %>% 
+    select(symptoms, user) 
+  ggplot(result, aes(x=user, y=symptoms, color=symptoms)) + geom_point() +
+    geom_hline(aes(yintercept = mean(symptoms), color = symptoms))
 }
 
 # draw pie chart for cause factors
