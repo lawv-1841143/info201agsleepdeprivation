@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 
 source('analysis.R')
 
@@ -9,17 +10,34 @@ server <- function(input, output) {
   output$us_timeline <- renderPlot(
     draw_sleep_trend_plot(input$StudiesMethods)
   )
-  #output$value <- renderPrint({input$YearRange})
-  output$compared.bar <- renderPlot(
+  output$pie_chart <- renderPlotly(
+    draw_pie()
+  )
+  output$compared.bar <- renderPlotly(
     draw_compare_bar(input$select.activities)
   )
-  output$sleep_GPA <- renderPlot(
-    draw_bar_graph_gpa_tired()
+  output$sleep_impacts <- renderPlot(
+    plot_impacts(input$age, input$symptoms)
   )
+<<<<<<< HEAD
   output$br1 <- renderPlot(
     draw_br1()
   )
   output$br2 <- renderPlot(
     draw_br2()
   )
+=======
+  output$sleep_GPA <- renderPlotly({
+    return(draw_bar_graph_gpa_tired())
+  })
+  output$years_old <- renderText({
+    age_statement(input$age_years)
+  })
+  output$awake <- renderText({
+    wake_statement(input$awake_time)
+  })
+  output$sleep_time <- renderText({
+    calculate_sleep(input$age_years, input$awake_time)
+  })
+>>>>>>> ba9252de77ebefff5ecdefa3ecdf5f38e0e9328f
 }
