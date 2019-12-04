@@ -89,7 +89,8 @@ ggplotly(plot_usmap(data = new_df, values = "percent", color = "white", labels =
               tooltip = c("value"))
 
 # bar graph of GPA and feeling-tired relationship
-plot_ly(
+draw_bar_graph_gpa_tired <- function() {
+  plot_ly(
     x = c("Yes", "No"),
     y = c(3.04, 3.24),
     type = "bar"
@@ -97,8 +98,10 @@ plot_ly(
     layout(
       title = "Feeling tired, fatigued, or daytime sleepiness",
       xaxis = list(title = "Answer"),
-      yaxis = list(title = "GPA", range = c(3.0, 3.5))
+      yaxis = list(title = "GPA", range = c(3.0, 3.3))
     )
+}
+
 
 #add a coloumn of total 'activity' time in minute
 convert_to_min <- function(activity) {
@@ -142,5 +145,3 @@ plot_ly(
     yaxis = list(title = "Time(minute)")
   )
 }
-
-draw_compare_bar(life_tracking_df$meditation)
