@@ -5,8 +5,8 @@ account: phuongkvu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1559712
-bundleId: 2640810
+bundleId: 2640920
 url: https://phuongkvu.shinyapps.io/info201agsleepdeprivation/
-when: 1575477184.58635
+when: 1575479625.42474
 asMultiple: FALSE
 asStatic: FALSE

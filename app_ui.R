@@ -140,14 +140,18 @@ ui <- fluidPage(
       ),
       sidebarLayout(
         sidebarPanel(
-          sliderInput("age_years", "How old ar,e you?",
+          sliderInput("age_years", "How old are you?",
                       min = 1, max = 99,
                       value = 19),
           sliderInput("awake_time", "What time do you need to wake up?",
                       min = 0.5, max = 23.5,
                       value = 8)
         ),
-        mainPanel()
+        mainPanel(
+          column(4, verbatimTextOutput("years_old")),
+          column(4, verbatimTextOutput("awake")),
+          column(4, verbatimTextOutput("sleep_time")),
+        )
       )
     ),
     navbarMenu(
