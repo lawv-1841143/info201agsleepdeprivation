@@ -11,18 +11,20 @@ ui <- fluidPage(
       "Background",
       tags$div(
         h3("About This Project:"),
-        p("In today’s society, people sacrifice their sleep time for various
+        p("In today's society, people sacrifice their sleep time for various
           reasons: studying for exams, finishing up work or tasks, suffering
           from anxiety or sleep disorders… etc. No matter what the reasons are,
           they all contribute to sleep deprivation. Since people not getting
           enough sleep has become a global phenomenon, it is important to learn
           about its effect and what sleep deprivation is like in society."),
-        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults’ sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."),
+        p("This project specifically focuses on the topic of sleep deprivation for adults aged 19 to 39 in the United States. The topics covered in this project include adults' sleeping trends from 2000 to 2015, negative impacts of sleep deprivation, the general sleeping hour in each state, and how much time people spend on different activities compared to their sleep time. Moreover, by presenting the information through different types of interactive and non-interactive graphs, our team hopes to provide a fun and interactive learning experience to the users."),
         h3("Page Description"),
-        p("The Trend tab will show you a current trend in recent decades about people's sleeping time in general."),
-        p("The Brutal Reality tab shows people the certain fact that sleep deprivation is actually leading to a bad performance in life. It will be discussed in multiple ways, such as fatigue driving, test performances, and reaction times (RTs)."),
-        p("The Causes tab is about multiple factors that might contribute to sleep deprivation. We visualized the differences between the hours spent in each potentially influential factors and the hours of sleep. The Life Tracking sub-tab displays an average data of what people do in their daily life. And the user can type in their time use for daily life to fit into the graph and see their difference with U.S. population averages."),
-        p("The Impact tab introduces possible diseases that people might have due to sleep deprivation. A hug contrast can be seen in this tab, and the users can see the reduces risks if they sleep more. An interaction just for fun: test to see how many years you have left if you keep having sleep deprivation.")
+        p("The Trend tab introduces the average sleep time for U.S adult aged 19 to 39 from 2000 to 2012, the information was collected by applying Actigraphic Study and Polysomnography Study. On the bottom, a map illustrates the average percentage of people who do not have a least 7 hours of sleep in each state in the U.S."),
+        p("The Brutal Reality tab shows the fact that our performance is bad because of sleep deprivation. "),
+        p("The Causes tab has two sub tabs. On the Multiple Factors tab, an interactive pie chart demonstrates the most common factors that cause U.S college students stay up so late at night based on the survey. On the Life tracking sample page, the interactive scatter plot compares different activity time with people’s sleep time."),
+        p("The Impact tab introduces some possible impact on people’s mental and physical health if people are sleep deprived for long, as well as how sleep deprivation could affect students’ academic performance. The tab has an interactive scatterplot that allows user to choose their own interest of age group and multiple outcomes of sleep deprivation. On the bottom, an interactive bar graph gives users a glance of  U.S college students’ average GPA affected by daytime sleepiness."), 
+        p("The conclusion tab summarize the biggest lesson of this project, strength and weakness, and some possible improvement that could be made to make this project better. The sleep time calculator at the bottom will calculate the time user should go to bed to get enough sleep based on their age and what time they plan to wake up."), 
+        p("The About tab has two sub tabs : About Tech and About us. The About Tech tab has the citation for all the resources used in the project. The About Us tab gives a brief introduction of each members in this project group.")
       )
     ),
     tabPanel(
